@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h1>Lesson 3</h1>
+   <h2>1. З клавіатури вводяться імена двох дітей та кількість у них цукерок.  <br> Вивести не екран ім’я тієї дитини, у якої кількість цукерок є більшою, або вивести, що кількість однакова.</h2>
+   <script>
+   const firstChild = prompt('Please, enter your name', 'name')
+   const firstChildSweets = parseInt(prompt('Please, enter the quantity of sweets', '0'))
+   const secondChild = prompt('Please, enter your name', 'name')
+   const secondChildSweets = parseInt(prompt('Please, enter the quantity of sweets', '0'))
+   let moreSweets
+   if (firstChildSweets>secondChildSweets) moreSweets=firstChild
+   else if (firstChildSweets<secondChildSweets) moreSweets=secondChild
+   else moreSweets = 'The quantity is the same'
+   document.write(`${moreSweets}`)
+   </script>
+   <h2>2. З клавіатури вводиться ціна товару і кількість грошей. Якщо грошей не вистачає то відмовляємо у покупці, <br> інакше, якщо ще залишаються гроші, то пропонуємо купити лотерею за 4 грн.
+   </h2>
+   <script>
+   const priceOfGoods = parseFloat(prompt('Please, enter the price', '0'))
+   const quantityOfMoney = parseFloat(prompt('Please, enter the quantity of money', '0'))
+   let purchase 
+   if (priceOfGoods>quantityOfMoney) purchase = 'The purchase is denied'
+   else if ((quantityOfMoney-priceOfGoods)>4) purchase = 'Thanks for the purchase! We also recomend you to buy the lottery ticket for 4 UAH'
+   else purchase = 'Thanks for the purchase!'
+   document.write (`${purchase}`)
+   </script>
+   <h2>3. Випадковим чином генерується число від 1 до 5. Спробуйте вгадати число за 2 спроби.</h2>
+   <script>
+      const minNumber = 1
+      const maxNumber = 5
+      let userNumber1 = parseInt(prompt('Please, enter the number from 1 to 5', '1-5'))
+      let userNumber2
+      let randomNumber = minNumber+Math.floor(Math.random()*(maxNumber-minNumber+1))
+      let result 
+      if (randomNumber===userNumber1) result = 'Congrats, you are win!'
+      else userNumber2 = parseInt(prompt('Please, enter the number from 1 to 5', '1-5'))
+      if(randomNumber===userNumber2) result = 'Congrats, you are win!'
+      else result = 'Please, try later:('
+      document.write (`${result} Random number is ${randomNumber}`)
+   </script>
+   <h2>4. З клавіатури вводиться вік людини. <br> Вивести на екран ким він є (дитиною у садочку, школярем, студентом, працівником, пенсіонером).</h2>
+   <script>
+      const currentAge = parseInt(prompt('Please, enter your age', '0'))
+      const childMaxAge = 6
+      const pupilMaxAge = 17
+      const studentMaxAge = 23
+      const workerMaxAge = 55
+      let currentStatus
+      if (currentAge<=childMaxAge) currentStatus = 'Child'
+      else if (currentAge<=childMaxAge) currentStatus= 'Pupil'
+      else if (currentAge<=studentMaxAge) currentStatus = 'Student'
+      else if (currentAge<=workerMaxAge)currentStatus = 'Worker'
+      else currentStatus = 'Pensionier'
+      document.write(`You are a ${currentStatus} now!`)
+   </script>
+   <h2>5. З клавіатури вводиться назва категорії водія (А-мотоцикл, В-легковий автомобіль, С-вантажний автомобіль). <br> Вивести на екран назву транспортного засобу, яким він може керувати.
+   </h2>
+   <script>
+      const userCategory = prompt('Please enter your category in format A,B, or C...', 'A,B,C')
+      let possibleTransport
+      switch (userCategory) {
+         case ('A'): possibleTransport = 'Motorbike'
+         break;
+         case ('B'): possibleTransport = 'Passenger car'
+         break;
+         case ('C'): possibleTransport = 'Freaight car'
+         break;
+         default: possibleTransport = '-'
+         break;
+      }
+      document.write(`Your current possible trasport is '${possibleTransport}'`)
+   </script>
+   <h2>6. З клавіатури вводиться номер дня тижня. Вивести на екран назву дня.</h2>
+   <script>
+      const dayOfTheWeek = parseInt(prompt('Please, enter the day of the week', '1-7'))
+      let currentDay
+      switch (dayOfTheWeek) {
+         case (1): currentDay = 'Monday'
+         break;
+         case(2): currentDay = 'Tuesday'
+         break;
+         case(3):currentDay = 'Wednesday'
+         break;
+         case(4):currentDay = 'Thursday'
+         break;
+         case(5):currentDay = 'Friday'
+         break;
+         case(6):currentDay = 'Saturday'
+         break;
+         case(7):currentDay = 'Sunday'
+         break;
+         default: currentDay = 'Please enter correct day of the week'
+         break;
+      }
+      document.write (`${currentDay}`)
+   </script>
+   <h2>7. З клавіатури вводиться номер місяця. Вивести до якої пори він відноситься</h2>
+   <script>
+      const userMonth = parseInt(prompt('Please, enter the number fo the month', '1-12'))
+      const maxWinterMonth = 2
+      const maxSpringMonth = 5
+      const maxSummerMonth = 8
+      const maxAutumnMonth = 11
+      const decemberMonth = 12
+      let currentSeason
+      if (userMonth<=maxWinterMonth) currentSeason = 'Winter'
+      else if (userMonth<=maxSpringMonth) currentSeason = 'Spring'
+      else if (userMonth<=maxSummerMonth) currentSeason = 'Summer'
+      else if (userMonth<=maxAutumnMonth) currentSeason = 'Autumn'
+      else if (userMonth<=decemberMonth) currentSeason = 'Winter'
+      else currentSeason = 'Please, enter the correct number of the month'
+      document.write (`${currentSeason}`)
+   </script>
+</body>
+</html>
