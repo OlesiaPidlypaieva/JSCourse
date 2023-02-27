@@ -23,18 +23,23 @@
    <h2>16. Користувач поступово вводить прибуток магазину за кожен день протягом N тижнів. <br> Знайти загальну величину прибутку та вивести величину прибутку протягом кожного окремого тижня.
    </h2>
    <script>
-      const userNumerWeeks = parseInt(prompt('Please enter the number of weeks would you like count', '0'))
-      let weeksCounter = 1
-      let userProfitSum = 0
-      let userWeeklyProfit
+      const userNumberWeeks = parseInt(prompt('Please enter the number of weeks would you like count', '0'))
+      let userProfitWeekSum = 0
+      let userProfitTotalSum = 0
+      let dayCounter = 1
+      for ( let weeksCounter = 1; weeksCounter<=userNumberWeeks;weeksCounter++){
       do {
-         userWeeklyProfit = parseFloat(prompt(`Please, input the ${weeksCounter} week profit`, '0'))
-         document.write(`The ${weeksCounter} week profit is ${userWeeklyProfit} $ <br>`)
-         weeksCounter++
-         userProfitSum+=userWeeklyProfit
+         userDayProfit = parseFloat(prompt(`Please, input the ${dayCounter} day of the ${weeksCounter} week profit`, '0'))
+         dayCounter++
+         userProfitWeekSum+=userDayProfit
       }
-      while (weeksCounter <= userNumerWeeks)
-      document.write(`The total profit is ${userProfitSum} $`) 
+      while (dayCounter <= 7)
+      userProfitTotalSum+=userProfitWeekSum
+      document.write(`The ${weeksCounter} week profit is ${userProfitWeekSum} $ <br>`)
+      dayCounter = 1
+      userProfitWeekSum = 0
+   }
+      document.write(`The total profit is ${userProfitTotalSum} $`) 
    </script>
 </body>
 </html>
