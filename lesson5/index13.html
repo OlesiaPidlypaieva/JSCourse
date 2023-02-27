@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<style>
+   table , td {
+      border: 2px solid black;
+   }
+   .table__box {
+      display: flex;
+      gap: 20px;
+   }
+   .drum__box {
+      display: flex;
+      gap: 20px;
+   }
+</style>
+<body>
+   <h2>13. Морський бій. Комп’ютер випадково розташовує одиночний корабель на полі розміром N*M. <br> Маючи К снарядів користувач намагається потопити корабель. 
+   </h2>
+   <script>
+      const userLenth = parseInt(prompt('Please, enter the lenth, min 1', '1'))
+      const userWidth = parseInt(prompt('Please, enter the width min 1 ', '1'))
+      const userAmmunition = parseInt(prompt('Please, enter the number fo amunition'))
+      const randomLenthLocation = 1+Math.floor(Math.random()*userLenth)
+      const randomWidthLocation = 1+Math.floor(Math.random()*userWidth)
+      let userAttemptLenth 
+      let userAttempWidth
+      for (let userAttempts = 0; userAttempts<userAmmunition;userAttempts++) {
+         userAttemptLenth = parseInt(prompt(`Please, enter arrangement of the ship along the lengh, max ${userLenth}`, '1'))
+         userAttempWidth = parseInt(prompt(`Please, enter arrangement of the ship along the the width, max ${userWidth}`, '1'))
+         if (userAttemptLenth === randomLenthLocation && userAttempWidth === randomWidthLocation){
+         document.write(`You win!The location is ${randomWidthLocation} on width and ${randomLenthLocation} on lenth`)
+         break;}
+         else {let tryAgain = alert('The location is incorrect...')}
+      }
+      if(userAttemptLenth !== randomLenthLocation || userAttempWidth !== randomWidthLocation)
+      document.write(`You loose(((The location is ${randomWidthLocation} on width and ${randomLenthLocation} on lenth`)
+   </script>
+</body>
+</html>

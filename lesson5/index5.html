@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<style>
+   table , td {
+      border: 2px solid black;
+   }
+   .table__box {
+      display: flex;
+      gap: 20px;
+   }
+   .drum__box {
+      display: flex;
+      gap: 20px;
+   }
+</style>
+<body>
+   <h2>5. Вивести таблицю</h2>
+   <script>
+      let counter = 1
+      document.write(`<table>`)
+         for(let tr = 1; tr<=3; tr++){
+            document.write(`<tr>`)
+               for (let td = 1; td <= 3; td++) {
+                     document.write(`<td>${counter}</td>`)
+                     counter++
+                     }
+               document.write(`</tr>`)
+               }
+      document.write(`</table>`)
+   </script>
+</body>
+</html>

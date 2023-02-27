@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<style>
+   table , td {
+      border: 2px solid black;
+   }
+   .table__box {
+      display: flex;
+      gap: 20px;
+   }
+   .drum__box {
+      display: flex;
+      gap: 20px;
+   }
+</style>
+<body>
+   <h2>7. Вивести на екран N абзаців (N вводиться користувачем) за зразком:</h2>
+   <script>
+      const userParagraphNumber = parseInt(prompt('Please, enter the number or paragraphs', '0'))
+      let maxParagraphNumber = 1
+      while(maxParagraphNumber<=userParagraphNumber){
+         document.write(`<h1>Заголовок${maxParagraphNumber}</h1>`)
+         for (let i=0; i<maxParagraphNumber; i++){
+         document.write(`<p>Розділ${maxParagraphNumber}, параграф${maxParagraphNumber}</p>`)}
+         document.write('<hr>')
+         maxParagraphNumber++
+      }
+   </script>
+</body>
+</html>

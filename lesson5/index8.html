@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<style>
+   table , td {
+      border: 2px solid black;
+   }
+   .table__box {
+      display: flex;
+      gap: 20px;
+   }
+   .drum__box {
+      display: flex;
+      gap: 20px;
+   }
+</style>
+<body>
+   <h2>8. Користувач загадує число. <br> За 3 спроби комп’ютер намагається вгадати число користувача (використати confirm)</h2>
+   <script>
+      let confirmThatNumberGuessed = confirm('Please, conrifm that you guessed the number from 0 to 100')
+      if(confirmThatNumberGuessed == true) {
+         let i
+         for(i = 0;i<3;i++){
+            const minRandomNumber = 0
+            const maxRandomNumber = 100
+            let randomNumber = minRandomNumber+Math.floor(Math.random()*(maxRandomNumber-minRandomNumber+1))
+            let confirmThatNumberCorrect = confirm (`Please, conrifm that you guessed the number ${randomNumber}`)
+            if(confirmThatNumberCorrect==true){
+            document.write('Great!')
+            break;}
+         }
+         if(i>=3)document.write('Dont be upset, youll guess next time!')
+      }
+      else document.write('You didnt guess the number(((')
+   </script>
+</body>
+</html>

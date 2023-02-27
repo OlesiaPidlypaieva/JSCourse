@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<style>
+   table , td {
+      border: 2px solid black;
+   }
+   .table__box {
+      display: flex;
+      gap: 20px;
+   }
+   .drum__box {
+      display: flex;
+      gap: 20px;
+   }
+</style>
+<body>
+   <h2>10. Знайти суму всіх непарних чисел, що знаходяться між заданими користувачем числами. </h2>
+   <script>
+      const minNumber = parseInt(prompt('Please, enter min number', '0'))
+      const maxNumber = parseInt(prompt('Please, enter max number', '0'))
+      let sum = 0
+      document.write(`Unpaired numbers are: `)
+      for(let i = minNumber; i<=maxNumber; i++){
+         if(i%2!==0){
+         document.write(`${i},`)
+         sum +=i}
+      }
+      document.write(` The sum of unpaired numbers is ${sum}`)
+   </script>
+</body>
+</html>

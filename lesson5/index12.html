@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<style>
+   table , td {
+      border: 2px solid black;
+   }
+   .table__box {
+      display: flex;
+      gap: 20px;
+   }
+   .drum__box {
+      display: flex;
+      gap: 20px;
+   }
+</style>
+<body>
+   <h2>12. Ігровий автомат. Випадково вибираємо зображення у 3 позиціях. Вибір у кожній позиції <br> вибирається як одне з чотирьох зображень. Вивести ці зображення і повідомити виграш користувача <br> (три перших зображення 100 грн, три других – 200, три третіх – 500, три четвертих зображення – <br> 1000грн). Використати цикли і switch (для вибору зображення за номером).
+   </h2>
+   <script>
+      const userAgreement = confirm("Do you want to win some money?")
+      let sumOfWin
+      let win100 = 0
+      let win200 = 0
+      let win500 = 0
+      let win1000 = 0
+      document.write('<div class=drum__box>')
+         for (let drumNumber = 0; drumNumber < 3; drumNumber++) {
+            document.write('<p class=drum__item>')
+            const minRandomNumber = 1
+            const maxRandomNumber = 4
+            let randomNumber = minRandomNumber+Math.floor(Math.random()*(maxRandomNumber-minRandomNumber+1))
+         switch(randomNumber){
+            case(1):{sumOfWin=100
+            win100++
+            break;}
+            case(2):{sumOfWin=200
+            win200++
+            break;   }       
+            case(3):{sumOfWin=500
+            win500++
+            break;}         
+            case(4):{sumOfWin=1000
+            win1000++
+            break;}
+         }
+         document.write(`${sumOfWin}`)
+         document.write('</p>')
+      }
+      document.write('</div>')
+      if( win100===3 || win200===3 || win500===3 ||win1000===3) 
+      document.write(`You are win${sumOfWin}$!!!`)
+      else document.write ('You are loose(((')
+   </script>
+</body>
+</html>
