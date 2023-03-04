@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h2>3. Створити окремі функції, які для 4 чисел знаходять: 1)суму; 2)добуток; 3)середнє арифметичне; 4)мінімальне значення. 
+      </h2>
+   <script>
+      function getNumbersSumValue (c1,c2,c3,c4){
+      let sum = c1+c2+c3+c4
+      return sum
+      }
+      function getNumbersMultiplValue (c1,c2,c3,c4){
+      let multipl = c1*c2*c3*c4
+      return multipl
+      }
+      function getNumbersAverageValue (c1,c2,c3,c4){
+      let average = (c1+c2+c3+c4)/4
+      return average
+      }
+      function getNumbersMinValue (c1,c2,c3,c4){
+      let min = c1
+      if (c2<min) min = c2
+      if (c3<min) min = c3
+      if (c4<min) min = c4
+      return min
+      }
+      const userNumber1 = parseFloat(prompt('Please, enter the number 1'))
+      const userNumber2 = parseFloat(prompt('Please, enter the number 2'))
+      const userNumber3 = parseFloat(prompt('Please, enter the number 3'))
+      const userNumber4 = parseFloat(prompt('Please, enter the number 4'))
+
+
+      let NumbersSum = getNumbersSumValue(userNumber1,userNumber2,userNumber3,userNumber4)
+      let NumbersMultipl = getNumbersMultiplValue(userNumber1,userNumber2,userNumber3,userNumber4)
+      let NumbersAvarage = getNumbersAverageValue(userNumber1,userNumber2,userNumber3,userNumber4)
+      let NumbersMinValue = getNumbersMinValue(userNumber1,userNumber2,userNumber3,userNumber4)
+
+      document.write(`Your numbers are: ${userNumber1}, ${userNumber2},${userNumber3}, ${userNumber4}. <br>
+      The sum of this numbers is ${NumbersSum} <br>
+      The value of multiplication is ${NumbersMultipl} <br>
+      The average value is ${NumbersAvarage} <br>
+      The min value is ${NumbersMinValue}`)
+   </script>
+</body>
+</html>

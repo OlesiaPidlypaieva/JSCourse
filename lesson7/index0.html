@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h2>0. Створити функцію, яка за номером місяця повертає пору року, до якої відноситься цей місяць.
+   </h2>
+   <script>
+      function getCurrentSeason (userMonth) {
+         let result
+         switch(userMonth){
+            case (1): 
+            case (2):result = 'Winter'
+            break
+            case (3):
+            case (4):
+            case (5): result = 'Spring'
+            break
+            case (6):
+            case (7):
+            case (8): result = 'Summer'
+            break
+            case (9):
+            case (10):
+            case (11): result = 'Autumn'
+            break
+            case (12): result = 'Winter'
+            break
+            default: result = 'Error'
+            break
+         }
+         return result
+      }
+      const userMonth = parseInt(prompt('Please, enter the number of the month', '1-12'))
+      const currentSeason = getCurrentSeason(userMonth)
+      document.write(`The current season is ${currentSeason}`)
+   </script>
+</body>
+</html>

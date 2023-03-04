@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h2>2. Створити функцію, яка за номером дня дозволяє з’ясувати чи є цей день робочим.</h2>
+   <script>
+         function getDayStatus (dayNumber) {
+         if (dayNumber>0 && dayNumber<6)  return 'Working day'
+         else if (dayNumber>=6 && dayNumber<=7) return 'Weekend'
+         else return 'Error'
+      }
+      let dayNumber = parseInt(prompt('Please, enter the number of the day', '1-7'))
+      const dayStatus = getDayStatus(dayNumber)
+      document.write (`Hello!Today is ${dayStatus}`)
+   </script>
+</body>
+</html>

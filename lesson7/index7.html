@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<style>
+   img{
+      width: 150px;
+      height: auto;
+   }
+</style>
+<body>
+   <h2>7. Створити функцію, яка випадковим чином виводить на екран одне <br> із 4 зображень (шляхи до зображень передаються у функцію)</h2>
+   <script>
+      function getRandomImg (img1,img2,img3,img4){
+         let randomNumber = Math.floor(Math.random()*4)
+         console.log(randomNumber);
+         return arguments[randomNumber]
+      }
+      let img1 = '<img src="img/flowers1.jpeg" alt="">'
+      let img2 = '<img src="img/flowers2.jpeg" alt="">'
+      let img3 = '<img src="img/flowers3.webp" alt="">'
+      let img4 = '<img src="img/flowers4.jpeg" alt="">'
+      const randomImg = getRandomImg(img1,img2,img3,img4)
+      document.write(`${randomImg}`)
+   </script>
+   
+</body>
+</html>

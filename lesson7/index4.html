@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h2>4. Створити функцію, яка для 3 заданих чисел знаходить одночасно декілька результатів: <br> кількість парних, кількість додатних, кількість більших за 100.</h2>
+   <script>
+
+      function getCalculations (c1,c2,c3) {
+         let counterEvenNumbers = 0
+         let counterPositiveNumbers = 0
+         let counterMoreThan100Numbers = 0
+         for (let i = 0; i<arguments.length; i++ ) {
+            if (arguments[i]%2===0) counterEvenNumbers++
+            if (arguments[i]>0) counterPositiveNumbers++
+            if (arguments[i]>100) counterMoreThan100Numbers++
+         }
+         return `${counterEvenNumbers}`+' even numbers, '+`${counterPositiveNumbers}`+' positive numbers, ' + `${counterMoreThan100Numbers}`+ ' more than 100 numbers.'
+
+      }
+      const userNumber1 = parseFloat(prompt('Please, enter number 1'))
+      const userNumber2 = parseFloat(prompt('Please, enter number 2'))
+      const userNumber3 = parseFloat(prompt('Please, enter number 3'))
+      const calculations = getCalculations(userNumber1,userNumber2,userNumber3)
+      document.write(`${calculations}`)
+   </script>
+</body>
+</html>

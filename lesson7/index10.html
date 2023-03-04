@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h2>10. Дано покази температур (довільна кількість). Розробити функцію, яка дозволить знайти середнє <br> значення для додатних показів температури. </h2>
+   <script>
+      function getTemperatureAboveZeroAverage (measurementsNumber){
+         let aboveZeroSum = 0
+         let aboveZeroCounter = 0
+         for (let i=1; i<=measurementsNumber; i++){
+            let measurements = parseFloat(prompt(`Please, enter the measurement ${i}...`))
+            if(measurements>0) {
+               aboveZeroSum+=measurements 
+               aboveZeroCounter++
+         }
+      }
+      return (aboveZeroSum/aboveZeroCounter).toFixed(2)
+   }
+      let usersDataAmmount = parseInt(prompt('Please, enter the number of temperature measurements...'))
+      const temperatureAboveZeroAverage = getTemperatureAboveZeroAverage(usersDataAmmount)
+      document.write(` The average above zero temperature is ${temperatureAboveZeroAverage} degrees`)
+   </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h2>9. Дано покази температур (довільна кількість). Розробити функцію, яка дозволить підрахувати <br> кількість від’ємних показів температури.
+   </h2>
+   <script>
+      function getTemperatureBelowZero (measurementsNumber){
+         let belowZeroCounter = 0
+         for (let i=1; i<=measurementsNumber; i++){
+            let measurements = parseFloat(prompt(`Please, enter the measurement ${i}...`))
+            if(measurements<0) belowZeroCounter++
+         }
+         return belowZeroCounter
+      }
+      let usersDataAmmount = parseInt(prompt('Please, enter the number of temperature measurements...'))
+      const temperatureBelowZero = getTemperatureBelowZero(usersDataAmmount)
+      document.write(` The number of the days with temperature below zero is ${temperatureBelowZero}`)
+   </script>
+</body>
+</html>

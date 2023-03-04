@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h2>Задача 5. Створити окремі функції, які переводять: <br>
+      Сантиметри у дюйми;<br>
+      Кілограми у фунти; <br>
+      Кілометри у милі.
+      </h2>
+   <script>
+      function getCalcInches (userCentimeters) {
+         return (userCentimeters*0.393701).toFixed(2)
+      }
+      function getCalcPounds (userKilograms) {
+         return (userKilograms*2.20462).toFixed(2)
+      }
+      function getCalcMiles (userKilometers) {
+         return (userKilometers*0.621371).toFixed(2)
+      }
+      const userCentimeters = parseFloat(prompt('Please, enter the lenth in centimeters'))
+      const userKilograms = parseFloat(prompt('Please, enter the weight in kilograms'))
+      const userKilometers = parseFloat(prompt('Please, enter the distance in kilometers'))
+      const calcInches = getCalcInches(userCentimeters)
+      const calcPounds = getCalcPounds(userKilograms)
+      const calcMiles = getCalcMiles(userKilometers)
+      document.write(`${userCentimeters} centimeters is ${calcInches} inches <br> 
+      ${userKilograms} kilograms is ${calcPounds} pounds <br> 
+      ${userKilometers} kilometers is ${calcMiles} miles.`) 
+   </script>
+</body>
+</html>

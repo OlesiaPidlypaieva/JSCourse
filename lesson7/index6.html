@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<style>
+   table , td {
+   border: 2px solid black;
+}
+</style>
+<body>
+   <h2>6. Створити функцію, яка створює таблицю з вказаною кількістю рядків і стовпців <br> 
+   (таблиця заповнюється заданим фіксованим повідомленням).</h2>
+   <script>
+      function getUserTable (tr,td,message) {
+         document.write(`<table>`)
+         for (let i=0; i<tr; i++){
+            document.write(`<tr>`)
+               for (let j=0; j<td; j++){
+                  document.write(`<td>${message}</td>`)
+               }
+            document.write(`</tr>`)
+         }
+         document.write(`</table>`)
+      }
+      const userRowsNumber = parseInt(prompt('Please, enter the rows number'))
+      const userDefinesNumber = parseInt(prompt('Please, enter the defines number'))
+      const userMessage = prompt('Please, enter the message')
+      getUserTable(userRowsNumber,userDefinesNumber,userMessage)
+   </script>
+</body>
+</html>
