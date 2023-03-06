@@ -14,10 +14,10 @@
       <li>кількість оцінок, які нижче середнього.</li>
    </ul>
    <script>
-      function inputArray (arrayItemsNumber){
+      function inputArray (min, max, arrayItemsNumber){
       let arr = []
       for (let i = 0; i<arrayItemsNumber; i++) {
-         const userScore = 1+ Math.floor(Math.random()*5)
+         const userScore = Math.floor(Math.random() * (max - min + 1)) + min
          arr.push(userScore)
       }
       return arr
@@ -36,8 +36,7 @@
       }
       return scoreCounter
    }
-   const userScoreList = inputArray(6)
-   console.log(userScoreList);
+   const userScoreList = inputArray(1,5,6)
    const scores2 = getSameScoreNumber(2, userScoreList)
    const scores4 = getSameScoreNumber(4, userScoreList)
    const scores5 = getSameScoreNumber(5, userScoreList)

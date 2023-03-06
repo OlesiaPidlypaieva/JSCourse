@@ -10,10 +10,10 @@
       він відноситься (відмінник, двійочник (має хоча би одну двійку), хорошист (оцінки добре і відмінно), трійочник <br>
       (є хоча би одна трійка)).</h2>
    <script>
-      function inputArray (arrayItemsNumber){
+      function inputArray (min, max, arrayItemsNumber){
          let arr = []
          for (let i = 0; i<arrayItemsNumber; i++) {
-            const userScore = 1+ Math.floor(Math.random()*5)
+            const userScore = Math.floor(Math.random() * (max - min + 1)) + min
             arr.push(userScore)
          }
          return arr
@@ -40,7 +40,7 @@
          return userRate
       }
       const userItemsNumber = parseInt(prompt('Please, enter the number of your scores'))
-      const userScoreList = inputArray(userItemsNumber)
+      const userScoreList = inputArray(1,5,userItemsNumber)
       const userAverageScore = getAverageScore(userScoreList)
       const userMinScore = getminUserScore(userScoreList)
       const userRate = getUserRate(userMinScore)

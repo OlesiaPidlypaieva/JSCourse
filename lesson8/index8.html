@@ -11,10 +11,10 @@
       (поки він не відмовиться). Знаходити сумарний виграш.
    </h2>
    <script>
-      function inputArray (inputNumber) {
+      function inputArray (min, max, inputNumber) {
          let arr = []
          for (let i = 0; i<inputNumber; i++) {
-            const arrItem = (-500)+ Math.floor(Math.random()*1001)
+            const arrItem = Math.floor(Math.random() * (max - min + 1)) + min
             arr.push(arrItem)
          }
          return arr
@@ -30,7 +30,7 @@
          while (userConfirm === true)
          return userWinSum
       }
-      let randomWinSum = inputArray(100)
+      let randomWinSum = inputArray(-500,500,100)
       let userWinSum = getUserWinSum(randomWinSum)
       document.write(`You win ${userWinSum} $`)
    </script>

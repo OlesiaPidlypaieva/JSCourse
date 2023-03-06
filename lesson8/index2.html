@@ -14,10 +14,10 @@
       <li>загальну кількість клієнтів у робочі дні та окремо загальну кількість днів на вихідних.</li>
    </ul>
    <script>
-      function inputArray(userPeriod){
+      function inputArray(min, max, userPeriod){
          let arr=[]
          for (let i = 0; i<userPeriod; i++) {
-            const visitorsNumber = 1+Math.floor(Math.random()*100)
+            const visitorsNumber = Math.floor(Math.random() * (max - min + 1)) + min
             arr.push(visitorsNumber)
          }
          return arr
@@ -57,7 +57,7 @@
          for (let i = minDay; i<maxDay; i++) daySum+=visitorsList[i]
          return daySum
       }
-      const visitorsList = inputArray(7)
+      const visitorsList = inputArray(1,100,7)
       const maxVisitorsQuantity = getvisitorsMaxQuantity(visitorsList)
       const minVisitorsQuantity = getvisitorsMinQuantity(visitorsList)
       const visitorsLess20  = getDaysVisitorsLessThan20(visitorsList)

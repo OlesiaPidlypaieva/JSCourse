@@ -17,10 +17,10 @@
          <li>за місяці, які є початковими у сезоні (весна, літо, осінь, зима).</li>
       </ul>
    <script>
-      function inputArray (arrayItemsNumber){
+      function inputArray (min, max, arrayItemsNumber){
       let arr = []
       for (let i = 0; i<arrayItemsNumber; i++) {
-         const userScore = 1+Math.floor(Math.random()*100)
+         const userScore = Math.floor(Math.random() * (max - min + 1)) + min
          arr.push(userScore)
       }
       return arr
@@ -46,7 +46,7 @@
       return paymentSum
    }
 
-   const paymentList = inputArray(12)
+   const paymentList = inputArray(1,100,12)
    const yearPaymentSum = getPeriodSum(0,12,paymentList)
    const firstHalfYearPaymentSum = getPeriodSum(0,6,paymentList)
    const secondHalfYearPaymentSum = getPeriodSum(6,12,paymentList)
