@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h2>Задача 5. Дано послідовність оцінок учня. Підрахувати кількість:
+   </h2>
+   <ul>
+      <li>двійок</li>
+      <li>кількість хороших оцінок (добре, відмінно);</li>
+      <li>кількість оцінок, які нижче середнього.</li>
+   </ul>
+   <script>
+      function inputArray (arrayItemsNumber){
+      let arr = []
+      for (let i = 0; i<arrayItemsNumber; i++) {
+         const userScore = 1+ Math.floor(Math.random()*5)
+         arr.push(userScore)
+      }
+      return arr
+   }
+   function getSameScoreNumber (score, scoreArray) {
+      let scoreCounter = 0
+      for (let i = 0; i<scoreArray.length; i++) {
+         if (scoreArray[i] === score) scoreCounter++
+      }
+      return scoreCounter
+   }
+   function getScoresLessThanSpecified (score, scoreArray){
+      let scoreCounter = 0
+      for (let i = 0; i<scoreArray.length; i++) {
+         if (scoreArray[i] < score) scoreCounter++
+      }
+      return scoreCounter
+   }
+   const userScoreList = inputArray(6)
+   console.log(userScoreList);
+   const scores2 = getSameScoreNumber(2, userScoreList)
+   const scores4 = getSameScoreNumber(4, userScoreList)
+   const scores5 = getSameScoreNumber(5, userScoreList)
+   const scoresLessThan3 = getScoresLessThanSpecified(3, userScoreList)
+   document.write (`  <h5>In your list:</h5>  <ul>
+      <li> ${scores2} scrore(s) "2";</li>
+      <li>${scores4+scores5} good score(s) "4" and "5";</li>
+      <li>${scoresLessThan3} score(s) that under middle mark</li>
+   </ul>`)
+   </script>
+</body>
+</html>

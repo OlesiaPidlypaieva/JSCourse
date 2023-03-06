@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<style>
+   table , td {
+   border: 2px solid black;
+}
+</style>
+<body>
+   <h2>Задача 6. Дано послідовність цін товарів та назв (у окремих масивах). Вивести на екран ті, <br> які може собі дозволити користувач (кількість грошей задається).
+   </h2>
+   <script>
+      const productTitles = ['bread', 'water', 'cheese', 'vine', 'bacon']
+      const productPrices = [10, 15, 50, 100, 110]
+      function usersPurchasingPower(moneyQuantity, products, prices) {
+         let purchasingPowerList = []
+         for (let i = 0; i<products.length; i++) {
+            if (moneyQuantity>=prices[i]) purchasingPowerList.push(products[i])
+         }
+         return purchasingPowerList
+      }
+      const userMoneyQuantity = parseFloat(prompt('Please, tell me the sum of money that you have' ))
+      const purchasingPowerList = usersPurchasingPower(userMoneyQuantity,productTitles,productPrices)
+      document.write(`So, you have enough money to by some of this products: ${purchasingPowerList} `)
+   </script>
+</body>
+</html>

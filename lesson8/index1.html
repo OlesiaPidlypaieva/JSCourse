@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h2>Задача 1. Дано масив, який містить оцінки з К предметів. Знайти середній бал і з’ясувати до якої категорії <br>
+      він відноситься (відмінник, двійочник (має хоча би одну двійку), хорошист (оцінки добре і відмінно), трійочник <br>
+      (є хоча би одна трійка)).</h2>
+   <script>
+      function inputArray (arrayItemsNumber){
+         let arr = []
+         for (let i = 0; i<arrayItemsNumber; i++) {
+            const userScore = 1+ Math.floor(Math.random()*5)
+            arr.push(userScore)
+         }
+         return arr
+      }
+      function getAverageScore (scoreList) {
+         let scoreSum = 0
+         for (let i = 0; i<scoreList.length; i++) {
+            scoreSum+=scoreList[i]
+         }
+         return (scoreSum/scoreList.length).toFixed(2)
+      }
+      function getminUserScore (scoreList) {
+         let minScore = scoreList[0]
+         for (let i = 0; i<scoreList.length; i++) {
+            if (scoreList[i]<minScore) minScore = scoreList[i]
+         }
+         return minScore
+      }
+      function getUserRate (minScore) {
+         let userRate
+         if (userMinScore<=2) userRate = 'Двійочник'
+         else if (userMinScore===3) userRate = 'Трійочник'
+         else userRate = 'Хорошист'
+         return userRate
+      }
+      const userItemsNumber = parseInt(prompt('Please, enter the number of your scores'))
+      const userScoreList = inputArray(userItemsNumber)
+      const userAverageScore = getAverageScore(userScoreList)
+      const userMinScore = getminUserScore(userScoreList)
+      const userRate = getUserRate(userMinScore)
+      document.write(`So, your average score is ${userAverageScore} and you are '${userRate}'`)
+   </script>
+</body>
+</html>

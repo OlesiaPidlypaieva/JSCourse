@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h2>Задача 9. Морський бій. Користувач вводить кількість клітинок одновимірного масиву та кількість одиночних <br>
+      кораблів. Комп’ютер довільно розміщує ці одиночні кораблі у масиві по один у клітинці (якщо у клітинці 0,  <br>
+      то клітинка пуста, якщо 1 – то це означає, що там є корабель. Користувач вводить номер клітинки, куди стріляє.  <br>
+      Гра продовжується до тих пір, поки не будуть потоплені усі кораблі.
+   </h2>
+   <script>
+      function arrayInput (elementsNumber) {
+         let arr=[]
+         for (let i = 0; i < elementsNumber; i++) {
+            const cell = 0;
+            arr.push(cell)
+         }
+         return arr
+      }
+      function arrayShipsIndex (shipsQuantity, fieldSize) {
+         let arr = []
+         for(let ships = 0; ships<shipsQuantity; ships++) {
+            const shipRandomIndex = Math.floor(Math.random()*fieldSize)
+            if (arr.includes(shipRandomIndex)) ships --
+            else arr.push(shipRandomIndex)
+         }
+         return arr
+      }
+      function inputShipNumbersToArray (startField, shipsIndex) {
+         for (let i = 0; i<shipsIndex.length; i++) {
+            startField[shipsIndex[i]] = 1
+         }
+      }
+      function seaFightGame (fieldSize, shipsQuantity, fieldWithShips) {
+         let userShot
+         for (let shot = 0; shot<shipsQuantity; shot++) {
+            userShot = parseInt(prompt(`Please, enter the location of ship from 1 to ${fieldSize}`))
+            if (fieldWithShips[userShot-1] === 1) 
+            {alert(`Good job! You find the ship! Please, remember the number of cell`)}
+            else {
+               alert('Try again!')
+               shot--
+            }
+         }
+         document.write('Congrats!You win!')
+      }
+      const fieldSize = parseInt(prompt('Please, enter the number of cells in the field'))
+      const gameField = arrayInput(fieldSize)
+      const shipsQuantity = parseInt(prompt('Please, enter the number of ships'))
+      const shipsIndex = arrayShipsIndex(shipsQuantity, fieldSize)
+      inputShipNumbersToArray(gameField,shipsIndex)
+      seaFightGame(fieldSize,shipsQuantity,gameField)
+   </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h2>Задача 2. Дано масив, який зберігає кількість відвідувачів магазину протягом тижня. Вивести на екран:</h2>
+   <ul>
+      <li>номери днів, протягом яких кількість відвідувачів була меншою за 20;</li>
+      <li>номери днів, коли кількість відвідувачів була мaксимальною;</li>
+      <li>номери днів, коли кількість відвідувачів була мінімальною;</li>
+      <li>загальну кількість клієнтів у робочі дні та окремо загальну кількість днів на вихідних.</li>
+   </ul>
+   <script>
+      function inputArray(userPeriod){
+         let arr=[]
+         for (let i = 0; i<userPeriod; i++) {
+            const visitorsNumber = 1+Math.floor(Math.random()*100)
+            arr.push(visitorsNumber)
+         }
+         return arr
+      }
+      function getDaysVisitorsLessThan20 (visitorsList) {
+         let arr = []
+         for (let i=0; i<visitorsList.length; i++) {
+            if (visitorsList[i] < 20) {
+               arr.push(i+1)
+            }
+         }
+         return arr
+      }
+      function getvisitorsMaxQuantity (visitorsList) {
+         let maxVisitorQuantity = visitorsList[0]
+         for (let i=0; i<visitorsList.length; i++) {
+            if (visitorsList[i] > maxVisitorQuantity) maxVisitorQuantity = visitorsList[i]
+         }
+         return maxVisitorQuantity
+      }
+      function getvisitorsMinQuantity (visitorsList) {
+         let minVisitorQuantity = visitorsList[0]
+         for (let i=0; i<visitorsList.length; i++) {
+            if (visitorsList[i] < minVisitorQuantity) minVisitorQuantity = visitorsList[i]
+         }
+         return minVisitorQuantity
+      }
+      function findCpecificDayfromArray (conditionOfSearch, arr) { 
+         let arr1 =[]
+         for (let i = 0; i<arr.length; i++){
+            if (arr[i] === conditionOfSearch)arr1.push(i+1)
+         }
+         return arr1
+      }
+      function getCpecificDaysSum (minDay,maxDay, visitorsList){
+         let daySum = 0
+         for (let i = minDay; i<maxDay; i++) daySum+=visitorsList[i]
+         return daySum
+      }
+      const visitorsList = inputArray(7)
+      const maxVisitorsQuantity = getvisitorsMaxQuantity(visitorsList)
+      const minVisitorsQuantity = getvisitorsMinQuantity(visitorsList)
+      const visitorsLess20  = getDaysVisitorsLessThan20(visitorsList)
+      const daysWithMaxQuantity = findCpecificDayfromArray(maxVisitorsQuantity,visitorsList)
+      const daysWithMinQuantity = findCpecificDayfromArray(minVisitorsQuantity,visitorsList)
+      const workingDaysVisitorsSum = getCpecificDaysSum(0,5,visitorsList)
+      const weekendVisitorsSum = getCpecificDaysSum(5,7,visitorsList)
+      document.write(`<div>The number(s) of the day(s) when visitors were less than 20 is (are): ${visitorsLess20}</div>`)
+      document.write (`<div>The number(s) of the day(s) with max quantity of visitors is(are):${daysWithMaxQuantity}</div>`) 
+      document.write (`<div>The number(s) of the day(s) with max quantity of visitors is(are):${daysWithMinQuantity}</div>`) 
+      document.write(`<div>The ammount of visitors on working days was ${workingDaysVisitorsSum} people, on the weekend - ${weekendVisitorsSum} people.</div>`)
+   </script>
+</body>
+</html>
