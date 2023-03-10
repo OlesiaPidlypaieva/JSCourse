@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h2>8. Дано масив номерів авто. Сформувати новий масив тих, які починаються на «А»
+   </h2>
+   <script>
+      const carNumberArray = ['AA45DC','BB45DC','AC45DC','CA45DC','AS45DC','WA45DC','QA45DC','AI45DC']
+      const carNumberArrayFirstLetterA = carNumberArray.filter(
+         element => element[0] === 'A'
+      )
+      document.write(carNumberArrayFirstLetterA)
+   </script>
+</body>
+</html>

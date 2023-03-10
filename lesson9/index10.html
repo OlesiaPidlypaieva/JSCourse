@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h2>Дано масив цін у грн. Податок складає 20%. <br> 
+   Сформувати масив, який буде містити величину сплаченого податку у грн.</h2>
+   <script>
+      const priceArray = [15,1590,23,567,34,51,5643,78,2345]
+      const vat = 20
+      const vatArray = priceArray.map(
+         element => element/100*vat
+      )
+      for (vatSize of vatArray) {
+         document.write (`${vatSize.toFixed(1)}<br>`)
+      }
+   </script>
+</body>
+</html>
