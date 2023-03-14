@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Lesson10</title>
+</head>
+<body>
+   <h2>Масив цін</h2>
+   <script>
+      const priceNumber = parseInt(prompt('Please,enter the number of prises'))
+      let priceArray = new Array(priceNumber).fill()
+      priceArray.forEach((number,index,baseArrRef)=>
+      {baseArrRef[index] = 1+Math.floor(Math.random()*10000)}
+      )
+      document.write(`The array of prices is: ${priceArray}`);
+      </script>
+
+      <h2>1)Сформувати новий масив, у якому є тільки ті, що більші за 1000 грн.</h2>
+      <script>
+      const priceArrayAbove1000 = priceArray.filter (price=>
+         price>1000
+      )
+      document.write(`The array with prices above 1000 is: ${priceArrayAbove1000}`);
+   </script>
+
+      <h2>2)Сформувати новий масив, у якому є номери тільки тих, що більші за 1000 грн.</h2>
+   <script>
+      let arrayAbove1000Numbers = priceArray.reduce((prevIndex, element, index)=> {
+         if (element>1000) 
+         return [...prevIndex, index]
+         else return prevIndex
+      }
+      , [])
+      document.write(`The array with indexes of prices above 1000 is: ${arrayAbove1000Numbers}`);
+   </script>
+
+      <h2>3)Сформувати список з тих цін, які більші за попереднє значення</h2>
+      <script>
+      let arrayAbovePreviousNumber = priceArray.reduce((prevNumber, element, index, baseArrRef)=> {
+         if (element>baseArrRef[index-1]) 
+         return [...prevNumber, element]
+         else return prevNumber
+      }
+      , [])
+      document.write(`The array with prices that higher than previous is: ${arrayAbovePreviousNumber}`);
+   </script>
+
+      <h2>4)Сформувати новий масив, що міститиме значення цін у відсотках стосовно максимального</h2>
+      <script>
+      let maxElementOfArray = priceArray.reduce((prevMaxNumber, element) =>
+      element>prevMaxNumber?element:prevMaxNumber)
+      console.log(maxElementOfArray);
+      let pricePercentAboutMaxPrice = priceArray.map(element =>element/maxElementOfArray*100)
+      for (pricePercent of pricePercentAboutMaxPrice){
+      document.write(`${pricePercent.toFixed(2)}% `);
+      }
+   </script>
+
+      <h2>5)Підрахувати кількість змін цін</h2>
+      <script>
+      let changePriceCounter = priceArray.reduce((previousChangeNumber, element, index, baseArrRef)=> 
+      {if (element!==baseArrRef[index+1] && baseArrRef[index+1]!== undefined) return previousChangeNumber+1
+      else return previousChangeNumber}
+         , 0
+      )
+      document.write(`The number of changes is: ${changePriceCounter}`);
+   </script>
+
+      <h2>6) Визначити, чи є ціна, що менше 1000,  7)Визначати, чи усі ціни більше за 1000</h2>
+      <script>
+      const allpricesAbove1000 = priceArray.every((price)=>price>1000)
+         function isPriceBelow1000Exists() {
+         let doesPriceBelow1000exist
+         if (allpricesAbove1000 === true) {
+            doesPriceBelow1000exist = 'All prices above 1000'
+         }
+         else  doesPriceBelow1000exist =  'Prices below 1000 exist'
+         return doesPriceBelow1000exist
+      }
+      let doesPriceBelow1000exist = isPriceBelow1000Exists()
+      document.write(`The number of changes is: ${doesPriceBelow1000exist}`);
+   </script>
+
+      <h2>8)Підрахувати кількість цін, що більше за 1000</h2>
+      <script>
+      let above1000NumbersQuantaty = priceArray.reduce((previousSum, element) => element>1000?previousSum+1:previousSum, 0)
+      document.write(`The number of prices above 1000 is: ${above1000NumbersQuantaty}`);
+   </script>
+
+      <h2>9)Підрахувати суму цін, що більше за 1000</h2>
+      <script>
+         let priceAbove1000Sum = priceArray.reduce((previousSum,element) => element>1000?previousSum+element:previousSum,0)
+         document.write(`The sum of prices above 1000 is: ${priceAbove1000Sum}`);
+      </script>
+
+      <h2>10)Знайти першу ціну, що більше за 1000</h2>
+      <script>
+         const firstElementMoreThan1000 = priceArray.find(element=>element>1000)
+         document.write(`The first price above 1000 is: ${firstElementMoreThan1000}`);
+      </script>
+
+      <h2>11)Знайти індекс першої ціни, що більше за 1000</h2>
+      <script>
+         const firstElementMoreThan1000Index = priceArray.findIndex(element=>element > 1000)
+         document.write(`The index of first price above 1000 is: ${firstElementMoreThan1000Index}`);
+      </script>
+
+      <h2>12)Знайти останню ціну, що більше за 1000</h2>
+      <script>
+         const lastElementMoreThan1000 = priceArray.findLast(element=>element>1000)
+         document.write(`The last price above 1000 is: ${lastElementMoreThan1000}`);
+      </script>
+
+      <h2>13)Знайти індекс останньої ціни, що більше за 1000</h2>
+      <script>
+         const lastElementMoreThan1000Number = priceArray.findLastIndex(element=>element > 1000)
+         document.write(`The last index of price above 1000 is: ${lastElementMoreThan1000Number}`);
+      </script>
+</body>
+</html>
