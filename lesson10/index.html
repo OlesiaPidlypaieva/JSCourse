@@ -27,9 +27,8 @@
       <h2>2)Сформувати новий масив, у якому є номери тільки тих, що більші за 1000 грн.</h2>
    <script>
       let arrayAbove1000Numbers = priceArray.reduce((prevIndex, element, index)=> {
-         if (element>1000) 
-         return [...prevIndex, index]
-         else return prevIndex
+         if (element>1000) prevIndex.push(index)
+         return prevIndex
       }
       , [])
       document.write(`The array with indexes of prices above 1000 is: ${arrayAbove1000Numbers}`);
@@ -38,9 +37,8 @@
       <h2>3)Сформувати список з тих цін, які більші за попереднє значення</h2>
       <script>
       let arrayAbovePreviousNumber = priceArray.reduce((prevNumber, element, index, baseArrRef)=> {
-         if (element>baseArrRef[index-1]) 
-         return [...prevNumber, element]
-         else return prevNumber
+         if (element>baseArrRef[index-1]) prevNumber.push(element)
+         return prevNumber
       }
       , [])
       document.write(`The array with prices that higher than previous is: ${arrayAbovePreviousNumber}`);
