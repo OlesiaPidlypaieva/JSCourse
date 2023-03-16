@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+      </head>
+      <body>
+      <h2>Задача 3. Морський бій. Випадковим чином на двовимірному полі розміром 6*6 розташовується 5 кораблів. <br>
+      Користувач стріляє вказуючи координати. Гра продовжується поки не потоплено усі кораблі або у користувача <br>
+      не закінчаться снаряди.</h2>
+      <script>
+      function getRandomNumber(minValue,maxValue) {
+      return minValue+Math.floor(Math.random()*(maxValue-minValue+1))
+      }
+
+      function generateRandomArray (rows, columns, number) {
+            let table = []
+            for (let row = 0; row<rows; row++) {
+                  let tableRow = []
+                  for  (let column = 0; column<columns; column++) {
+                  const startNumber = number
+                  tableRow.push(startNumber)}
+            table.push(tableRow)
+            }
+            return table
+      }
+      let seaFightField = generateRandomArray(6,6,0)
+
+      function fillArrayWithShips (table, minValue, maxValue, shipsNumber) {
+            for (let ship = 0; ship<shipsNumber; ship++) {
+                  const randomRow = getRandomNumber(minValue,maxValue)
+                  const randomColumn = getRandomNumber(minValue,maxValue)
+                  if (table[randomRow][randomColumn] === 0) table[randomRow][randomColumn]=1
+                  else ship--
+            }
+      }
+      fillArrayWithShips (seaFightField, 0, 5, 5)
+      console.log(seaFightField);
+
+      function seaFightGame (table,minCoordinates, maxCoordinates, shipsQuantity) {
+            for (shot = 0; shot<shipsQuantity; shot++) {
+                  const userRowCoordinate = parseInt(prompt(`Please, enter row coordinate from ${minCoordinates} to ${maxCoordinates}`))
+                  const userColumnCoordinate = parseInt(prompt(`Please, enter column coordinate from ${minCoordinates} to ${maxCoordinates}`))
+                  if (table[userRowCoordinate-1][userColumnCoordinate-1]===1) {alert('Cool! you hited the ship')}
+                  else {
+                        alert('Try Again!')
+                        shot--
+                  }
+            }
+            document.write('Congrats!You win!')
+      }
+      seaFightGame(seaFightField,1,6,5)
+      </script>
+</body>
+</html>

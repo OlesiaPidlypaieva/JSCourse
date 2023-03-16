@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h2> Задача 1. Знайти суми елементів у вказаній області</h2>
+   <script>
+      // формуємо масив
+      function getRandomNumber(minValue,maxValue) {
+         return minValue+Math.floor(Math.random()*(maxValue-minValue+1))
+      }
+      function generateRandomArray(arrayLength, minValue, maxValue) {
+         const arr = []
+         for (let i=0; i<arrayLength; i++) {
+            const randomValue = getRandomNumber(minValue,maxValue)
+            arr.push(randomValue)
+         }
+         return arr
+      }
+      
+      function generateRandomTable(rowsNumber,columsNumber, minValue, maxValue) {
+         const table = []
+         for (let i =0; i<rowsNumber; i++) {
+            const rowInTable = generateRandomArray(columsNumber,minValue,maxValue)
+            table.push(rowInTable)
+         }
+         return table
+      }
+      const userColumsNumber = parseInt(prompt('Please, enter the number of colums'))
+      const userRowsNumber = parseInt(prompt('Please, enter the number of rows'))
+      const newTable = generateRandomTable(userRowsNumber,userColumsNumber, 1, 10)
+      // виводимо масив
+      document.write('<h2>Random array is: <br>')
+      for (row of newTable) {
+         document.write(`${row}<br>`)
+      }
+      document.write('</h2>')
+      // знаходимо суму у першій чверті масиву
+      function findFirstQuarterSum(table) {
+         let sum = 0
+         for (let tableRow = 0; tableRow<Math.floor(table.length/2); tableRow++) {
+            for (let tableColum = 0; tableColum<Math.floor(table[tableRow].length/2); tableColum++)
+            sum+=table[tableRow][tableColum]
+         }
+         return sum
+      }
+      const firstQuaterSum = findFirstQuarterSum(newTable)
+      document.write (`<h2>The first quater sum is ${firstQuaterSum}</h2>`)
+   
+      // знаходимо суму у другій чверті масиву
+      function findSecondQuarterSum(table) {
+         let sum = 0
+         for (let tableRow = 0; tableRow<Math.floor(table.length/2); tableRow++) {
+            for (let tableColum = Math.floor(table[tableRow].length/2); tableColum<table[tableRow].length; tableColum++)
+            sum+=table[tableRow][tableColum]
+         }
+         return sum
+      }
+      const secondQuaterSum = findSecondQuarterSum(newTable)
+      document.write (`<h2>The second quater sum is ${secondQuaterSum}</h2>`)
+      
+      // знаходимо суму у третій чверті масиву
+      function findThirdQuarterSum(table) {
+         let sum = 0
+         for (let tableRow = Math.floor(table.length/2); tableRow<table.length; tableRow++) {
+            for (let tableColum = 0; tableColum<Math.floor(table[tableRow].length/2); tableColum++)
+            sum+=table[tableRow][tableColum]
+         }
+         return sum
+      }
+      const thirdQuaterSum = findThirdQuarterSum(newTable)
+      document.write (`<h2>The third quater sum is ${thirdQuaterSum}</h2>`)
+      
+      // знаходимо суму у четвертій чверті масиву
+      function findFourthQuarterSum(table) {
+         let sum = 0
+         for (let tableRow = Math.floor(table.length/2); tableRow<table.length; tableRow++) {
+            for (let tableColum = Math.floor(table[tableRow].length/2); tableColum<table[tableRow].length; tableColum++)
+            sum+=table[tableRow][tableColum]
+         }
+         return sum
+      }
+      const fourthQuaterSum = findFourthQuarterSum(newTable)
+      document.write (`<h2>The fourth quater sum is ${fourthQuaterSum}</h2>`)
+
+      //5) Суму парних рядків
+      function findEvenRowsSum(table) {
+         let sum = 0
+         for (let tableRow = 0; tableRow<table.length; tableRow++) {
+            if (tableRow%2 === 0) {
+            for (let tableColum = 0; tableColum<table[tableRow].length; tableColum++)
+            sum+=table[tableRow][tableColum]
+            }
+         }
+         return sum
+      }
+      const evenRowsSum = findEvenRowsSum(newTable)
+      document.write (`<h2>The even rows sum is ${evenRowsSum}</h2>`)
+
+      //6) Суму непарних стовпців
+      function findOddColumsSum(table) {
+         let sum = 0
+         for (let tableRow = 0; tableRow<table.length; tableRow++) {
+            for (let tableColum = 0; tableColum<table[tableRow].length; tableColum++){ 
+            if (tableColum%2 !== 0) sum+=table[tableRow][tableColum]}
+         }
+         return sum
+      }
+      const oddColumsSum = findOddColumsSum(newTable)
+      document.write (`<h2>The odd colums sum is ${oddColumsSum}</h2>`)
+
+      //7) У парних рядках – непарні стовпці, у непарних – парні
+      function findEvenRowOddColumnAndOddRowEvenColumn (table) {
+         let sum = 0
+         for (let tableRow = 0; tableRow<table.length; tableRow++){
+            if (tableRow%2===0) {
+               for (let tableColum = 0; tableColum<table[tableRow].length; tableColum++){ 
+               if (tableColum%2 !== 0) sum+=table[tableRow][tableColum]
+               }
+            }
+            else  {
+               for (let tableColum = 0; tableColum<table[tableRow].length; tableColum++){ 
+               if (tableColum%2 === 0) sum+=table[tableRow][tableColum]
+               }
+            }
+         }
+         return sum
+      }
+      const mixedSum = findEvenRowOddColumnAndOddRowEvenColumn(newTable)
+      document.write (`<h2>The sum of even rows/odd colums and odd rows/even colums is: ${mixedSum}</h2>`)
+   </script>
+</body>
+</html>
