@@ -84,12 +84,12 @@
       displayTotalWeekDay(totalDaySum)
       // 3) загальний прибуток за робочі дні
       let workDaysSum = getTotalDayProfit(shopsProfitTable, 0, 5)
-      let totalWorkDaysSum = workDaysSum.reduce((prevSum,element) => prevSum+=element)
+      let totalWorkDaysSum = workDaysSum.reduce((prevSum,element) => prevSum+element)
       document.write(`<p>Total work days sum is: ${totalWorkDaysSum}$</p>`)
       
       // 4) загальний прибуток за вихідні дні
       let weekendDaysSum = getTotalDayProfit(shopsProfitTable, 5, 7)
-      let totalWeekendDaysSum = weekendDaysSum.reduce((prevSum,element) => prevSum+=element)
+      let totalWeekendDaysSum = weekendDaysSum.reduce((prevSum,element) => prevSum+element)
       document.write(`<p>Total weekend days sum is: ${totalWeekendDaysSum}$</p>`)
 
       //5) максимальний прибуток за середу
@@ -162,10 +162,6 @@
       }
          displaySortedArray(sortShopsProfitTable2, 'Array sorted by descending max profit:')
          displaySortedArray(sortShopsProfitTable3, 'Array sorted by descending max sum:')
-
-
-
-
    </script>
 </body>
 </html>
