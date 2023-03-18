@@ -36,12 +36,15 @@
 
       <h2>3)Сформувати список з тих цін, які більші за попереднє значення</h2>
       <script>
-      let arrayAbovePreviousNumber = priceArray.reduce((prevNumber, element, index, baseArrRef)=> {
-         if (element>baseArrRef[index-1]) prevNumber.push(element)
-         return prevNumber
+      function getPriceAbovePreviousPriceArray (array) {
+         let arr = []
+         for (let priceNumber = 1; priceNumber<array.length; priceNumber++) {
+            if (array[priceNumber]>array[priceNumber-1]) arr.push(array[priceNumber])
+         }
+         return arr
       }
-      , [])
-      document.write(`The array with prices that higher than previous is: ${arrayAbovePreviousNumber}`);
+      const priceAbovePreviousPriceArray = getPriceAbovePreviousPriceArray(priceArray)
+      document.write(`The array with prices that higher than previous is: ${priceAbovePreviousPriceArray}`);
    </script>
 
       <h2>4)Сформувати новий масив, що міститиме значення цін у відсотках стосовно максимального</h2>
