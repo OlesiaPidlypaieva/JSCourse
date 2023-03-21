@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+      </head>
+      <body>
+      <h2>Задача 3. Сортування включенням</h2>
+      <script>
+            function getRandomNumber(minValue,maxValue) {
+            return minValue+Math.floor(Math.random()*(maxValue-minValue+1))
+            }
+            function generateRandomArray(arrayLength, minValue, maxValue) {
+            const arr = []
+            for (let i=0; i<arrayLength; i++) {
+                  const randomValue = getRandomNumber(minValue,maxValue)
+                  arr.push(randomValue)
+            }
+            return arr
+            }
+            const randomArray = generateRandomArray(30, 1, 50)
+            document.write(`<h3>Base array is:</h3> ${randomArray}</h3>`)
+      
+            let changesCounter = 0
+            function getSortedArray(arr) {
+                  for (let k = 1; k<arr.length;k++) {
+                  let currentElement = arr[k]
+                  let i = k-1
+                  while (i>=0 && arr[i]>currentElement) {
+                        arr[i+1] = arr[i]
+                        i=i-1
+                        changesCounter++
+                  }
+                  arr[i+1] = currentElement
+                  }
+            }
+      getSortedArray(randomArray);
+      document.write(`<h3>Sorted array is:</h3> ${randomArray}
+      <h3>The number of changes is:</h3> ${changesCounter}`)
+      </script>
+</body>
+</html>

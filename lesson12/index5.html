@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h2> Задача 5</h2>
+   <script>
+      const namesArray = ['Serhii','Veronika','Nata', 'Olga', 'Vera', 'Pavlo']
+      document.write(`<h3>Start names array is:</h3> ${namesArray}`);
+         function getSortedArray(arr) {
+            for(let k = 1; k<arr.length; k++) {
+               let currentName = arr[k]
+               let i = k-1 
+               while (i>=0 && arr[i]>currentName) {
+                  arr[i+1] = arr[i]
+                  i = i-1
+               }
+               arr[i+1] = currentName
+            }
+         }
+   let sortedArray = getSortedArray(namesArray)
+   document.write(`<h3>Sorted names array is:</h3> ${namesArray}`);
+
+   function IndexName_binarySearch(arr, searchName) {
+         let start = 0
+         let end = arr.length - 1
+         while (start<=end) {
+            const middle = Math.floor((start+end)/2)
+            if (arr[middle] === searchName) return middle
+            if (arr[middle]<searchName) start = middle+1
+            if (arr[middle]>searchName) end = middle-1
+         }
+         return -1
+      }
+
+   let indexBinarySearch = IndexName_binarySearch(namesArray,'Olga')
+         if (indexBinarySearch !== -1)document.write(`<h3>This array includes name Olga. The index of the name is ${indexBinarySearch} </h3>`)
+         else document.write('<h3>This array is not includes name Olga</h3>')
+   </script>
+</body>
+</html>
