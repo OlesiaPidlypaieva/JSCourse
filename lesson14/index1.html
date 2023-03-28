@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h2> Задача 1. Описати масив об’єктів – сайтів розроблених компанією з такими властивостями</h2>
+   <script>
+      let websites = [
+         {
+            tempopraryDeveloperCompany: 'ABC',
+            tempopraryDeveloperCompanyOwner: 'Jane Jonson',
+            sponsors: [
+               {
+                  secondName: 'Dash',
+                  name:'David',
+                  investmentAmmount: 100001
+               },
+               {
+                  secondName: 'Dashe',
+                  name:'Dav',
+                  investmentAmmount: 5000
+               },
+               {
+                  secondName: 'Bash',
+                  name:'Mark',
+                  investmentAmmount: 4000
+               }
+            ],
+            yearOfProduction: 2020,
+            cost: 50000
+         },
+         {
+            tempopraryDeveloperCompany: 'ABCD',
+            tempopraryDeveloperCompanyOwner: 'Jack Jonson',
+            sponsors: [
+               {
+                  secondName: 'Mash',
+                  name:'Maks',
+                  investmentAmmount: 6000
+               },
+               {
+                  secondName: 'Rash',
+                  name:'Mike',
+                  investmentAmmount: 20000
+               },
+               {
+                  secondName: 'Lash',
+                  name:'Ben',
+                  investmentAmmount: 4000
+               }
+            ],
+            yearOfProduction: 2001,
+            cost: 3000
+         },
+         {
+            tempopraryDeveloperCompany: 'ABCDE',
+            tempopraryDeveloperCompanyOwner: 'Luke Litt',
+            sponsors: [
+               {
+                  secondName: 'Mayson',
+                  name:'Mary',
+                  investmentAmmount: 8000
+               },
+               {
+                  secondName: 'Porter',
+                  name:'Pall',
+                  investmentAmmount: 5000
+               },
+               {
+                  secondName: 'Duke',
+                  name:'Mark',
+                  investmentAmmount: 7000
+               }
+            ],
+            yearOfProduction: 2010,
+            cost: 4000
+         }
+      ]
+         // 1) загальну вартість усіх сайтів
+      let totalWebSitePrice = websites.reduce((prevSum, website)=> prevSum+website.cost, 0)
+      document.write(`1. Total cost of websites is ${totalWebSitePrice}<br>`)
+
+         //2) кількість сайтів, що було зроблено між 2000 та 2009 рр.
+      let sitesBetween2000and2009 = websites.reduce((prevNumber, website)=> 
+      {
+         if (website.yearOfProduction>2000 && website.yearOfProduction<2009) prevNumber++
+         else prevNumber
+         return prevNumber
+      },0
+      )
+      document.write(`2. The number of sites which were produced between 2000 and 2009 is (are): ${sitesBetween2000and2009}<br>`)
+
+      //3) кількість сайтів, де сума спонсорських вкладень була більшою за 100000
+         function findWebsitesWithSponsorsAbove100000 (arr, sum) {
+            let websitesCounter = 0
+            for (let site = 0; site<arr.length; site++) {
+               for (let i = 0; i<arr[site].sponsors.length; i++){
+                  if (arr[site].sponsors[i].investmentAmmount > sum) websitesCounter++
+               }
+            }
+            return websitesCounter
+         }
+
+         let websitesWithSponsorsAbove100000 = findWebsitesWithSponsorsAbove100000(websites,100000)
+         document.write(`3. The number of sites with sponsors donates above 100.000 is(are): ${websitesWithSponsorsAbove100000}<br>`)
+
+      //4) створити загальний список усіх спонсорів (поки можуть повторюватись, просто зібрати усі у масив)
+
+      function getSponsorsArray (arr) {
+         let sponsorsArray = []
+         for (let site of arr){
+            for (let sponsor of site.sponsors) {
+               sponsorsArray.push(sponsor)
+            }
+         }
+         return sponsorsArray
+      }
+      const sponsorsArray = getSponsorsArray(websites)
+      // виведення спонсорів
+      document.write('4. Sponsors list: <br>')
+      for (let sponsor = 0; sponsor<sponsorsArray.length; sponsor++) {
+         document.write(`Sponsor${sponsor+1}:  <br>`)
+            for (let sponsorValue in sponsorsArray[sponsor]) {
+            document.write(`${sponsorValue}: ${sponsorsArray[sponsor][sponsorValue]}<br>`)
+         }
+      }
+
+      //5) знайти рік, коли прибуток був найбільшим
+      let maxProfitSum = websites.reduce((maxProfit, website)=> maxProfit>website.cost?maxProfit:maxProfit=website.cost,0)
+
+      //через фільтр тому що років з найбільшою сумою може бути декілька
+      let maxProfitSite = websites.filter(website=>website.cost === maxProfitSum)
+      document.write(`5. The year with max profit is ${maxProfitSite[0].yearOfProduction}<br>`)
+
+      //6. упорядкувати список за спаданням прибутку
+
+      let websiteForSort = JSON.parse(JSON.stringify(websites))
+      websiteForSort.sort((website1,website2)=> website2.cost-website1.cost)
+
+      // виведення відсортованих сайтів
+            document.write('6. Sorted sites list: <br>')
+      for (let site = 0; site<websiteForSort.length; site++){
+         document.write(`Site cost: ${websiteForSort[site].cost}$<br>`)
+      } 
+
+      //7. Створити 2 окремих списки з копіями об’єктів, що містять сайти з вартість до 10000 і більше 10000
+
+      function getSiteFilteredLists(arr) {
+         let websiteUnder10000 = []
+         let websiteAbove10000 = []
+         for (let website = 0; website< arr.length; website++) {
+            if (arr[website].cost<10000){ websiteUnder10000.push(JSON.parse(JSON.stringify(arr[website])))}
+            else websiteAbove10000.push(JSON.parse(JSON.stringify(arr[website])))
+         }
+         return [websiteUnder10000, websiteAbove10000]
+      }
+      let siteFilteredLists = getSiteFilteredLists(websites)
+
+      //вивід на екран
+
+      document.write(`7. Sites under 10000$:<br>`)
+      for (let siteUnder10000 = 0; siteUnder10000<siteFilteredLists[0].length; siteUnder10000++) {
+            document.write(`${siteFilteredLists[0][siteUnder10000].tempopraryDeveloperCompany}<br>`)
+      }
+      document.write(`Sites above 10000$:<br>`)
+      for (let siteAbove10000 = 0; siteAbove10000<siteFilteredLists[1].length; siteAbove10000++) {
+            document.write(`${siteFilteredLists[1][siteAbove10000].tempopraryDeveloperCompany}<br>`)
+      }
+   </script>
+</body>
+</html>

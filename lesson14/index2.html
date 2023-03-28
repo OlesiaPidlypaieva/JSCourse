@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h2>Задача 2. Розробити функцію, у яку передають об’єкт (день, місяць, рік). Визначити, який буде рік через N місяців.
+   </h2>
+   <script>
+      function getUserNumber(value) {
+         let userNumber = parseInt(prompt(`Please, enter the ${value}`))
+         return userNumber
+      }
+
+      function getUserDate() {
+         let day = getUserNumber('day')
+         let month = getUserNumber('month')
+         let year = getUserNumber('year')
+         let date = {
+            day,
+            month,
+            year
+         }
+         return date
+      }
+      let userDate = getUserDate()
+      let numberOfMonth = getUserNumber('month that passed')
+
+      function getCurrentYear({month, year}, N) {
+         return year + Math.floor((month-1+N)/12)
+      }
+
+      let currentYear = getCurrentYear(userDate, numberOfMonth)
+      document.write(`Current year is ${currentYear}`)
+
+   </script>
+</body>
+</html>
