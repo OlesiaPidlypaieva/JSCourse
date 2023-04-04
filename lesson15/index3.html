@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+      </head>
+      <body>
+      <h2>
+            Задача 2. Створити об’єкт «Авто». </h2>
+      <script>
+            let car = {
+                  carBrand: 'Ford',
+                  tankSize: 60,
+                  currentLitters: 25,
+                  seatsNumber: 5,
+                  passengersNumber: 3,
+
+                  refueling: function(litters) {
+                        if (this.currentLitters+litters <= this.tankSize){
+                              this.currentLitters = this.currentLitters+litters
+                        }
+                        else throw new Error ('It\'s too much')
+                  },
+                  showPassengersNumber: function() {
+                        return document.write(`Current passengers number is ${this.passengersNumber}<br>`)
+                  },
+                  addPassengers: function(passengers) {
+                        if (this.passengersNumber+passengers <= this.seatsNumber){
+                              this.passengersNumber = this.passengersNumber+passengers
+                        }
+                        else throw new Error ('It\'s too much')
+                  },
+                  removePassengers: function(passengers) {
+                        if (this.passengersNumber-passengers >= 0){
+                              this.passengersNumber = this.passengersNumber-passengers
+                        }
+                        else throw new Error ('We have no so many passengers')
+                  },
+
+                  toString: function() {
+                        return ` Ваш автомобіль - ${this.carBrand}, літрів у баку - ${this.currentLitters},  кількість пасажирів - ${this.passengersNumber}`
+                  }
+            }
+
+            document.write(`${car}<br>`)
+            car.refueling(20)
+            car.addPassengers(2)
+            car.showPassengersNumber()
+            car.removePassengers(5)
+            document.write(`${car}<br>`)
+      </script>
+</body>
+</html>

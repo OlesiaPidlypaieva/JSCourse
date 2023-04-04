@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<style>
+   img {
+      width: 300px;
+      height: auto;
+   }
+</style>
+<body>
+   <h2> Задача 4. Розробити клас Baner</h2>
+   <script>
+      class Banner {
+         constructor(bannersArray) {
+            this.bannersArray = bannersArray
+         }
+
+         chooseBanner() {
+            let bannerNumber = Math.floor(Math.random()*this.bannersArray.length)
+            return this.bannersArray[bannerNumber]
+         }
+
+         displayBanner() {
+            let randomBanner = this.chooseBanner()
+            return`<a href="${randomBanner.link}"><img src="${randomBanner.img}" alt=""></a>`
+         }
+      }
+
+      let bannersArray = [
+         {
+            link: 'https://ukrfreedomfund.org/',
+            img: 'img/flowers1.jpeg'
+         },
+         {
+            link: 'https://ukrfreedomfund.org/',
+            img: 'img/flowers2.jpeg'
+         },
+         {
+            link: 'https://ukrfreedomfund.org/',
+            img: 'img/flowers4.jpeg'
+         },
+         {
+            link: 'https://ukrfreedomfund.org/',
+            img: 'img/free.webp'
+         }
+      ]
+
+      let randomBanner = new Banner(bannersArray)
+      document.write(randomBanner.displayBanner())
+   </script>
+</body>
+</html>

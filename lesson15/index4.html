@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h2>Задача 3. Розробити клас MultChecker для перевірки таблиці множення</h2>
+   <script>
+      class MultChecker {
+         constructor (userNumber){
+            this.userNumber = userNumber,
+            this.coorectAnswers = 0,
+            this.incorrectAnswers = 0
+         }
+         taskGeneration(minValue,maxValue) {
+            let randomNumber = minValue+Math.floor(Math.random()*(maxValue-minValue+1))
+            let correctAnswer = randomNumber*this.userNumber
+            let userAnswer = parseInt(prompt(`Please, enter the multiple of ${this.userNumber}*${randomNumber}`))
+            return[randomNumber,correctAnswer,userAnswer]
+         }
+         multKnowlegesCheck () {
+            do {
+               let checkAnswers = this.taskGeneration(1,10)
+               if (checkAnswers[1]=== checkAnswers[2]) {
+                  alert('This answer is correct')
+                  this.coorectAnswers++}
+               else {
+                  alert('This answer is incorrect')
+                  this.incorrectAnswers++}
+            } while (confirm('Do you want to play again?'));
+         }
+
+         toString() {
+            return `The number we checked - ${this.userNumber}<br>CorrectAnswers - ${this.coorectAnswers}<br> Incorrect Answers - ${this.incorrectAnswers}<br>`
+         }
+      }
+      let numberToCheck = parseInt(prompt(`Please, enter the number from 1 to 10 would you like to check`))
+      let multChecker = new MultChecker (numberToCheck)
+      multChecker.multKnowlegesCheck()
+      document.write(multChecker)
+   </script>
+</body>
+</html>

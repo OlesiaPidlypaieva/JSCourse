@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h2> Задача 5. Розробити клас «Керівник танців»</h2>
+   <script>
+      class danceTeacher{
+         constructor(girlsArray, boysArray, interval) {
+            this.boysArray = boysArray,
+            this.girlsArray = girlsArray,
+            this.interval = interval
+         }
+         randomBoy(){
+            let randomIndex = Math.floor(Math.random()*this.boysArray.length) 
+            return this.boysArray[randomIndex]
+         }
+         randomGirl(){
+            let randomIndex = Math.floor(Math.random()*this.girlsArray.length) 
+            return this.girlsArray[randomIndex]
+         }
+         randomCouple() {
+            return this.randomBoy() + '+' + this.randomGirl()
+         }
+
+         run() {
+            setInterval(()=>{
+               alert(`${this.randomCouple()}`)
+            }, this.interval*1000)
+         }
+      }
+
+      let girls = ['Olena', 'Veronika', 'Nastya', 'Olesia']
+      let boys = ['Serhii', 'Ivan', 'Bohdan', 'Mark', 'Daniil']
+      let danceClass = new danceTeacher(girls,boys,5)
+      danceClass.run()
+   </script>
+</body>
+</html>

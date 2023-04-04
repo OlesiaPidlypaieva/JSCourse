@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h2>Задача 1. Створити об’єкт «Тир». У масиві зберігаються 1, якщо у цьому квадраті є заєць і 0 в іншому випадку.</h2>
+   <script>
+      let shootingGallery = {
+         playField: [1,0,1,0,0,1,1,0,1,0],
+
+         showPlayField: function(){
+            return `${this.playField}`
+         },
+
+         rabbitGame: function() {
+            for(let rabbit = 0; rabbit < 5; rabbit++) {
+               let shot = parseInt(prompt(`Please enter your shot from 1 to ${this.playField.length}`))
+               if (this.playField[shot-1] === 1) {alert('You catch the rabbit!')}
+               else { alert('You don\'t catch the rabbit((')
+               rabbit--
+               }
+            }
+            document.write(this.showPlayField())
+         }
+      }
+
+      shootingGallery.rabbitGame()
+   </script>
+</body>
+</html>

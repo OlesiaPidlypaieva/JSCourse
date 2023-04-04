@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h2>Задача 0. Дано два об’єкта. Обидва містять масив цілих чисел. При цьому у одному з них є функція знаходження суми, <br>
+      а у іншому – функція для знаходження добутку тих, які знаходяться між заданими мінімальним і максимальних значенням. <br>
+      Використати обидва методи стосовно обидвох об’єктів (використати call, apply)<br>
+      </h2>
+   <script>
+         let obj1 = {
+         numbers: [2,1,45,5,2,3],
+
+         getSum: function() {
+            return this.numbers.reduce((prevSum, element)=>prevSum+element)
+         },
+      }
+
+      let obj2 = {
+         numbers: [22,11,5,45,5,23],
+
+         getProduct: function(min, max){
+            return this.numbers.reduce((prevMultiple, num)=> (num>=min && num<=max)?prevMultiple*num:prevMultiple,1)
+         }
+      }
+
+      let sum2 = obj1.getSum.call(obj2)
+      let multiple1 = obj2.getProduct.call(obj1, 3,7)
+      document.write(`Object 1: Sum = ${obj1.getSum()}, Multiple = ${multiple1}; <br>
+      Object 2: Sum = ${sum2}, Multiple = ${obj2.getProduct(10, 25)}. `)  
+   </script>
+</body>
+</html>
