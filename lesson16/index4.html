@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h2>Задача 4. Створити клас TBankomat, який моделює роботу банкомата. Клас повинен містити поля для зберігання кількості купюр <br>
+      кожного із номіналів від 5 до 200 гривень. Реалізувати методи знаходження максимальної та мінімальної сум, які може видати <br>
+      банкомат, та метод зняття деякої суми.</h2>
+   <script>
+
+
+      class banknote {
+         constructor(name, number) {
+            this.banknoteName = name
+            this.banknoteNumber = number
+         }
+
+         toString() {
+            return `${this.banknoteName}`
+         }
+      }
+
+      class TBankomat {
+         constructor (banknotesInBankomat) {
+            this.banknotesArray = banknotesInBankomat
+         }
+
+      get minSum(){
+         return this.banknotesArray.find( element => element.banknoteNumber!== 0)
+      }
+
+      get sum(){
+         return this.banknotesArray.reduce((prevSum, element)=> prevSum+element.banknoteNumber*element.banknoteName,0)
+      }
+
+      set giveCash(value) {
+         if (this.sum>=value) {
+            for (let moneyValue = (this.banknotesArray.length-1); moneyValue>=0; moneyValue--) {
+               if(value >= this.banknotesArray[moneyValue].banknoteName) {
+               this.banknotesArray[moneyValue].banknoteNumber -= Math.floor(value/this.banknotesArray[moneyValue].banknoteName)
+               value = value%this.banknotesArray[moneyValue].banknoteName
+               }
+         }
+      }
+         else throw new Error('We can\'t give you this sum ATM')
+      }
+
+      toString(){
+         return `Min sum you can choose has to be multiple to ${this.minSum} UAH <br>
+         Current sum in bankomat is ${this.sum} UAH <br>`
+         }
+      }
+
+      let banknotesArray = [
+         new banknote(5,10),
+         new banknote(10,1),
+         new banknote(20,4),
+         new banknote(50,6),
+         new banknote(100,5),
+         new banknote(200,4)
+      ]
+
+      console.log(banknotesArray);
+      let bankomat = new TBankomat(banknotesArray)
+      document.write(bankomat)
+      bankomat.giveCash = 25
+      document.write(bankomat)
+      bankomat.giveCash = 1700
+      document.write(bankomat)
+      
+   </script>
+</body>
+</html>

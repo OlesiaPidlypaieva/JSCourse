@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+      </head>
+      <body>
+      <h2>
+            Задача 3. Об’єкт “Фірма” (використати члени-класи)
+      </h2>
+      <script>
+      class DateofFound {
+                  #year
+                  #month
+
+                  constructor(yearValue, monthValue) {
+                        this.Year = yearValue
+                        this.Month = monthValue
+                  }
+                  get Year() {
+                        return this.#year
+                  }
+                  get Month() {
+                        return this.#month
+                  }
+
+                  set Year(value) {
+                        if (value<1800) throw new Error ('Are you sure that year correct?')
+                        this.#year = value
+                  }
+
+                  set Month(value) {
+                        if (value<1 || value>12) throw new Error ('Incorrect month')
+                        this.#month = value
+                  }
+
+                  toString() {
+                        return `The month and year of foundaton is ${this.Month}.${this.Year}<br>`
+                  }
+            }
+
+            class Service {
+                  #serviceName
+                  #price
+                  #termInDays
+
+                  constructor(serviceName, price, days){
+                        this.ServiceName = serviceName
+                        this.Price = price
+                        this.TermInDays = days
+                  }
+
+                  get ServiceName() {
+                        return this.#serviceName
+                  }
+                  get Price() {
+                        return this.#price
+                  }
+                  get TermInDays() {
+                        return this.#termInDays
+                  }
+
+                  set ServiceName(name) {
+                        if (name.length === 0) throw new Error ('The field ie empty')
+                        this.#serviceName = name
+                  }
+                  set Price(value) {
+                        if (value<0) throw new Error ('Incorrect value')
+                        this.#price = value
+                  }
+                  set TermInDays(value) {
+                        if (value<0) throw new Error ('Incorrect value')
+                        this.#termInDays = value
+                  }
+                  toString() {
+                        return `(Service:${this.ServiceName}; Price: ${this.Price}; Term in Days: ${this.TermInDays})`
+                  }
+            }
+
+            class Branch {
+                  constructor (country, city, street, building) {
+                        this.Country = country
+                        this.City = city
+                        this.Street = street
+                        this.Byilding = building
+                  }
+                  toString() {
+                        return `(Country: ${this.Country}; City: ${this.City}; Street: ${this.Street}; Building: ${this.Byilding})`
+                  }
+            }
+
+            class Company {
+                  constructor(companyName, dateOfFound, services, branches) {
+                        this.companyName = companyName
+                        this.dateOfFoundation = dateOfFound
+                        this.services = services
+                        this.branches = branches
+                        this.branchesArr = []
+                        this.servicesArr = []
+                  }
+
+                  get CompaniesAge () {
+                        return new Date().getFullYear()-this.dateOfFoundation.Year
+                  }
+
+                  set BranchesInCity(value) {
+                        for (let branches of this.branches) {
+                              if (branches.City === value) {
+                                    this.branchesArr.push(branches)
+                              }
+                        }
+                        return this.branchesArr
+                  }
+
+                  set serviciesWithConditions(conditions) {
+                        for (let service of this.services) {
+                              console.log(service);
+                              if (service.Price<=conditions[0] && service.TermInDays<=conditions[1]) {
+                                    this.servicesArr.push(service)
+                              }
+                        }
+                        return this.servicesArr
+                  }
+
+                  toString() {
+                        return `
+                        Name of conmany: ${this.companyName};<br>
+                        Age of company: ${this.CompaniesAge};<br>
+                        Branches in city: <br> ${this.branchesArr}; <br>
+                        Servicies with conditions: <br> ${this.servicesArr}.<br>`
+                  }
+            }
+
+            let dateofCompanyFound  = new DateofFound(2005, 2)
+            let companiesServices = [
+                  new Service('Wash', 100, 5),
+                  new Service('Clean', 200, 1),
+                  new Service('Dry', 50, 6)
+            ]
+            let companiesBranches = [
+                  new Branch('Ukraine', 'Kyiv', 'Shevchenko', 100),
+                  new Branch('Ukraine', 'Odesa', 'Peremogy', 20),
+                  new Branch('Ukraine', 'Dnipro', 'Shevchenko', 50),
+                  new Branch('Poland', 'Warsaw', 'Vilna', 100),
+            ]
+
+            let companyInformation = new Company ('ABC', dateofCompanyFound, companiesServices, companiesBranches)
+            companyInformation.BranchesInCity = 'Kyiv'
+            companyInformation.serviciesWithConditions = [110, 6]
+            document.write(companyInformation)
+      </script>
+</body>
+</html>

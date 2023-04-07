@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h2>Задача 2. Створити клас TMoney для роботи з грошовими сумами. Сума повинна зберігатися у вигляді доларового еквіваленту. <br>
+      Реалізувати методи додавання/вилучення грошової маси, вказуючи необхідну суму у гривнях, та визначення курсу долара,<br>
+      при якому сума у гривнях збільшиться на 100. Курс долара зберігати в окремому полі. </h2>
+   <script>
+      class TMoney {
+         #moneyValue
+         #exchangeRate
+
+         constructor(initMoneyValue, initRate) {
+            this.ExchangeRate = initRate
+            this.MoneyValue = initMoneyValue
+
+         }
+
+         get MoneyValue () {
+            return this.#moneyValue
+         }
+         get ExchangeRate () {
+            return this.#exchangeRate
+         }
+
+         set ExchangeRate(value){
+            if (value<0) throw new Error ('Incorrect exchange rate')
+            this.#exchangeRate = value
+         }
+
+         set MoneyValue(value) {
+            if (value<0) throw new Error ('Not enough money')
+            this.#moneyValue = value / this.ExchangeRate
+         }
+
+         set IncreaseMoneyValue(userSum) {
+            this.MoneyValue = this.MoneyValue*this.ExchangeRate+userSum
+         }
+
+         set DecreaseMoneyValue (userSum) {
+            if (this.MoneyValue*this.ExchangeRate-userSum>=0) this.MoneyValue = this.MoneyValue*this.ExchangeRate-userSum
+            else throw new Error ('Not enough money')
+         }
+
+         get newDollarsExchangeRate () {
+            return (this.MoneyValue*this.#exchangeRate+100)/this.MoneyValue
+         }
+
+         toString() {
+            return `Current money sum: ${this.MoneyValue.toFixed(2)}$ <br>
+            Current exchange rate: ${this.ExchangeRate}<br>
+            Exchange rate to encrease your sum on 100UAN is ${this.newDollarsExchangeRate.toFixed(2)}<br>
+            `
+         }
+      }
+      let account = new TMoney(1000,36)
+      document.write(account)
+   </script>
+</body>
+</html>
