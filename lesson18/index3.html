@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+      </head>
+      <script>
+            function userAge(){
+                  let currentYear = new Date().getFullYear()
+                  let userYearOfBirth = parseInt(document.getElementById('userYear').value)
+                  document.querySelector(".user__age").innerHTML = `Your age is ${currentYear-userYearOfBirth}`
+            }
+            window.onload = function() {
+                  document.querySelector(".button").onclick = userAge
+            }
+      </script>
+      <body>
+      <h2>Задача 3. Користувач задає рік народження. Визначити кількість років користувача.</h2>
+      </h2>
+      <label>
+            Year ob Birth
+            <input id="userYear" type="number" value = "0">
+      </label>
+      <button class="button"> My age?</button>
+      <div class="user__age"></div>
+</body>
+</html>

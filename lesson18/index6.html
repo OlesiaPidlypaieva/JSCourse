@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h2> Задача 6. Користувач задає кількість оцінок і натискає на кнопку «get table». В результаті формується таблиця з input, <br>
+      куди користувач вводить оцінки. Після цього натискає на кнопку “get sum” і знаходить середнє значення.
+   </h2>
+   <label>
+      Price number
+      <input type="number" id="price__number" value="0">
+   </label>
+   <div><button id="create__table"> Get table</button></div>
+   <div class="table__wrapper"></div>
+   <script>
+      function createTable () {
+         let inputNumber = parseInt(document.getElementById('price__number').value)
+         let table = document.createElement('table')
+         document.querySelector('.table__wrapper').prepend(table)
+         let tr = document.createElement('tr')
+         table.prepend(tr)
+         for (let i = 0; i<inputNumber; i++) {
+            let td = document.createElement('td')
+            let input = document.createElement('input')
+            td.prepend(input)
+            input.classList.add('for__sum')
+            tr.prepend(td)
+         }
+         let button = document.createElement('button')
+         button.classList.add('aver__btn')
+         button.innerText = 'Get sum'
+         document.querySelector('.table__wrapper').after(button)
+         document.querySelector('.aver__btn').onclick = getAverage
+      }
+
+      function getAverage() {
+         let sumItems = document.querySelectorAll('.for__sum')
+         let sum = 0
+         for(item of sumItems) {
+            sum+=(parseFloat(item.value))
+         }
+         let average = sum/sumItems.length
+         let div = document.createElement('div')
+         div.innerText = `The average number is ${average.toFixed(2)}`
+         document.querySelector('.aver__btn').after(div)
+      }
+      document.getElementById('create__table').onclick = createTable
+   </script>
+</body>
+</html>

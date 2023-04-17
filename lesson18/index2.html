@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      .converter {
+         display: flex;
+         flex-direction: column;
+         gap: 40px;
+      }
+      button{
+         width: 150px;
+         height: auto;
+      }
+   </style>
+   <script>
+      function exchange(){
+         const dollarRate = 40
+         const euroRate = 42
+         console.log(euroRate);
+         let sum = parseFloat(document.getElementById('sumUAH').value)
+         console.log(sum);
+         document.querySelector('#sumEuro').value = (sum/euroRate).toFixed(2)
+         document.querySelector('#sumUSD').value = (sum/dollarRate).toFixed(2)
+      }
+
+      window.onload = function(){
+         document.querySelector('.button').onclick = exchange
+      }
+   </script>
+</head>
+<body>
+   <h2> 
+      Задача 2. Зробити конвертер валют (курси валют – константи у скрипті)
+   </h2>
+   <section class="converter">
+      <label>Сума у гривнях
+         <input id="sumUAH" type="number" value = "0">
+      </label>
+      <button class="button">Конвертувати</button>
+      <label> Сума в євро
+         <input id="sumEuro" type="number" value = "0">
+      </label>
+      <label>Сума в доларах
+         <input id="sumUSD" type="number" value = "0">
+      </label>
+   </section>
+   <script>
+   </script>
+</body>
+</html>

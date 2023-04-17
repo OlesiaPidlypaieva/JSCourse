@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <script>
+      function sumElem () {
+         let elem1 = parseFloat(document.getElementById("first").value)
+         let elem2 = parseFloat(document.getElementById("second").value)
+         let sum = elem1+elem2
+         document.getElementById("result").value = sum
+      }
+
+      function differElem () {
+         let elem1 = parseFloat(document.getElementById("first").value)
+         let elem2 = parseFloat(document.getElementById("second").value)
+         let differ = elem1-elem2
+         document.getElementById("result").value = differ
+      }
+      function multElem () {
+         let elem1 = parseFloat(document.getElementById("first").value)
+         let elem2 = parseFloat(document.getElementById("second").value)
+         let mult = elem1*elem2
+         document.getElementById("result").value = mult
+      }
+      function dividElem () {
+         let elem1 = parseFloat(document.getElementById("first").value)
+         let elem2 = parseFloat(document.getElementById("second").value)
+         let divid = elem1/elem2
+         document.getElementById("result").value = divid.toFixed(2)
+      }
+      window.onload = function(){
+         document.querySelector(".calc__add").onclick = sumElem
+         document.querySelector(".calc__differ").onclick = differElem
+         document.querySelector(".calc__mult").onclick = multElem
+         document.querySelector(".calc__divid").onclick = dividElem
+      }
+   </script>
+</head>
+<body>
+   <h2>Задача 1. Розробити калькулятор </h2>
+   <section class="calc">
+      <label> First number
+         <input id="first" type="number" value = "0">
+      </label>
+      <label> Second number
+         <input id="second" type="number" value = "0">
+      </label>
+      <div class="calc__btns">
+         <button class="calc__add">Додати</button>
+         <button class="calc__differ">Відняти</button>
+         <button class="calc__mult">Помножити</button>
+         <button class="calc__divid">Поділити</button>
+      </div>
+      <label>
+         Результат
+         <input id ="result" type="number" value = "0">
+      </label>
+   </section>
+</body>
+</html>

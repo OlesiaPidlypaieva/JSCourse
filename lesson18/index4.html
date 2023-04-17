@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h2>Наперед задано у скрипті масив зі списком бажань. Після завантаження сторінки випадковим чином вибираються 3 <br>
+      і відображаються у окремих div (їх треба створити і додати на сторінку)
+   </h2>
+   <div class="wish__list"></div>
+   <script>
+      const wishesList = [
+      'Happienees',
+      'Love',
+      'Peace',
+      'Hope',
+      'Health']
+      
+      function randomWish(wishArr) {
+         for(let wish = 0; wish<3; wish++) {
+         let randomWish = Math.floor(Math.random()*wishesList.length)
+         let div = document.createElement('div')
+         div.classList.add(`${wish}`)
+         div.innerHTML = `${wishesList[randomWish]}`
+         document.querySelector('.wish__list').prepend(div)
+         }
+   }
+      window.onload = randomWish(wishesList)
+   </script>
+</body>
+</html>

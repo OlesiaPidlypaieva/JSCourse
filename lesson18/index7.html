@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <h2>Задача 7. Подорож складається з 3 етапів. На кожному етапі користувач може вибрати <br>
+      один з видів транспорту (авто, автобус, літак - випадаючий список), харчування (сніданок, <br> 
+      обід, вечеря – checkbоx) та одного з 3-х гідів(використати  - radio buttons). Ціни визначте самі. Підрахувати загальну вартість.
+   </h2>
+   <p>Trip options</p>
+   <div class="trip__transport">
+      <label>
+         <p>Transport</p>
+         <select id="car">
+            <option value="100">Car</option>
+            <option value="50">Bus</option>
+            <option value="200">Plane</option>
+         </select>
+      </label>
+   </div>
+   <div class="trip__food">
+         <p>Food</p>
+         <label>Breakfast<input class="food__option" type="checkbox" value="20"></label>
+         <label>Lunch<input class="food__option" type="checkbox" value="30"></label>
+         <label>Dinner<input class="food__option" type="checkbox" value="25"></label>
+   </div>
+   <div class="trip__gide">
+      <p>Gide</p>
+      <label>Olga<input type="radio" name="gide" value="10"></label>
+      <label>Serhii<input type="radio" name="gide" value="5"></label>
+      <label>Olesia<input type="radio" name="gide" value="15"></label>
+</div>
+   <button id="button">Check total sum</button>
+   <script>
+
+      function getFoodSum(){
+         let foodList = document.querySelectorAll('.food__option')
+         console.log(foodList);
+         let foodSum = 0
+         for (let option of foodList) {
+            if (option.checked) foodSum+=(parseFloat(option.value))
+         }
+         return foodSum
+      }
+
+      function getGideSum(){
+         let gideList = document.querySelectorAll('input[name="gide"]')
+         let gideSum = 0
+         for (let gide of gideList) {
+            if (gide.checked) gideSum = parseFloat(gide.value);
+         }
+         return gideSum
+      }
+
+      function totalValue(){
+         const transportSum = parseFloat(document.getElementById('car').value)
+         let totalSum = getFoodSum()+getGideSum()+transportSum
+         let p = document.createElement('p')
+         p.innerText = `Total sum is ${totalSum}$`
+         document.getElementById('button').after(p)
+      }
+
+      document.getElementById('button').onclick = totalValue
+   </script>
+</body>
+</html>
