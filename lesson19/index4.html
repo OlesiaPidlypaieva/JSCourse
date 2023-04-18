@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="zero.css">
+   <title>Document</title>
+</head>
+<style>
+
+   #container {
+      background: url('img/sky.webp') center / cover no-repeat;
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+   }
+   .star {
+      position: absolute;
+      border-radius: 50%;
+      background-color: blanchedalmond;
+   }
+</style>
+<script>
+   //Задача 4. Сяючі зорі. Вказана кількість зірочок повинна з’являтися у випадковій частині екрану. 
+   //Кожна зірка з певним кроком і інтервалом збільшується від мінімального до максимального розміру. 
+   //Як тільки досягнути максимального розміру зірочка повинна з’являтися у іншій випадковій позиції.
+   class Star {
+      constructor (minWidth, maxWidth, minHeight, maxHeight) {
+         this.minWidth = minWidth
+         this.maxWidth = maxWidth
+         this.minHeight = minHeight
+         this.maxHeight = maxHeight
+      }
+
+      randomNumber(min, max){
+                  return Math.random() * (max - min) + min
+            }
+
+      render() {
+         this.star = document.createElement('div')
+         this.star.className = 'star'
+         this.star.style.width = this.minWidth+'px'
+         this.star.style.height = this.minHeight+'px'
+         this.star.style.top = this.randomNumber(1,98)+'%'
+         this.star.style.left = this.randomNumber(1,98)+'%'
+            setInterval(()=>{
+               if(parseInt(this.star.style.width)<this.maxWidth && parseInt(this.star.style.height)<this.maxHeight) {
+               this.star.style.width= (parseInt(this.star.style.width)+1)+'px'
+               this.star.style.height= (parseInt(this.star.style.height)+1)+'px'
+               }
+               else {
+                  this.star.style.width = this.minWidth+'px'
+                  this.star.style.height = this.minHeight+'px'
+                  this.star.style.top = this.randomNumber(1,98)+'%'
+                  this.star.style.left = this.randomNumber(1,98)+'%'
+               }
+            }
+            ,this.randomNumber(1, 1.5)*1000)
+         document.getElementById('container').append(this.star)
+      }
+   }
+
+   window.onload = function() {
+      for (let i = 0; i < 200; i++) {
+         let star = new Star(2,5,2,5)
+      star.render()   
+      }
+   }
+</script>
+<body>
+   <div id="container"></div>
+</body>
+</html>

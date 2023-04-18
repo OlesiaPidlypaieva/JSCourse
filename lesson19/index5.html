@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #container {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        background: url('img/9005959_1.jpeg') center / cover no-repeat;
+    }
+    .tank {
+        position: absolute;
+        width: 70px;
+        height: 40px;
+        border-radius: 20%;
+    }
+    img {
+        width: 70px;
+        height: 40px;
+        object-fit: cover;
+        border-radius: 20%;
+        transition-duration: 0.1s;
+    }
+</style>
+<body>
+<script>
+//Задача 5. Байрактар. З верхньої частини екрану у випадковій позиції по горизонталі з’являються танки, 
+//які їдуть вниз. При кліку на танк він вибухає і зникає з екрану. 
+
+class Tank {
+    constructor(){
+        this.top = 1
+    }
+    randomNumber(min, max){
+        return Math.random() * (max - min) + min
+    }
+
+    removeTank() {
+        this.tankImg.src = 'img/boom.png'
+        setTimeout(()=>{document.getElementById(this.tank.id).remove()},0.2*1000)
+    }
+
+    render(){
+        this.tank = document.createElement('div')
+        this.tank.setAttribute('id', this.randomNumber(1,100))
+        this.tank.className = 'tank'
+        this.tank.style.left = this.randomNumber(1,90)+'%'
+        this.tankImg = document.createElement('img')
+        this.tankImg.src = 'img/tank.jpeg'
+        this.tank.append(this.tankImg)
+
+        setInterval(()=>{
+            if(parseInt(this.tank.style.top)<98) {
+                this.tank.style.top = (parseInt(this.tank.style.top)+this.top)+'%'
+                this.tank.onclick = this.removeTank.bind(this)
+            }
+            else {
+                this.tank.style.top = 0+'%'
+            }
+            },this.randomNumber(0.1, 0.5)*1000)
+        
+        document.getElementById('container').append(this.tank)
+    }
+}
+
+window.onload = function () {
+    for (let i = 0; i < 10; i++) {
+        let tank = new Tank()
+        tank.render()
+    }
+}
+</script>
+<div id="container"></div>
+</body>
+</html>

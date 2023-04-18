@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+img {
+   width: 20px;
+   height: auto;
+}
+#container {
+   display: flex;
+   gap: 20px;
+}
+   </style>
+   <script>
+      class Athletes {
+         constructor(athletesList, generalTitle, sortTitle) {
+            this.athletesList = athletesList
+            this.athletesToCmp = []
+            this.generalTitle = generalTitle
+            this.sortTitle = sortTitle
+         }
+
+         changeGeneralList(athlet) {
+            for (let i = 0; i<this.athletesList.length; i++) {
+               if (athlet === this.athletesList[i]) {
+                  this.athletesToCmp.push(this.athletesList[i])
+                  this.athletesList.splice(i, 1)
+               }
+            }
+            this.render()
+         }
+
+         changeTeamList(athlet) {
+            for (let i = 0; i<this.athletesToCmp.length; i++) {
+               if (athlet === this.athletesToCmp[i]) {
+                  this.athletesList.push(this.athletesToCmp[i])
+                  this.athletesToCmp.splice(i,1)
+               }
+            }
+            this.render()
+         }
+
+         renderGeneralList() {
+            this.generalListContainer = document.createElement('div')
+            this.generalListContainer.className = 'general__list-container'
+            const generalTitle = document.createElement('h2')
+            generalTitle.innerHTML = this.generalTitle
+            this.generalListContainer.append(generalTitle)
+            const namesList = document.createElement('div')
+            namesList.className = 'athletes__names'
+               for (let ath of this.athletesList) {
+                  let athlets = document.createElement('div')
+                  athlets.className = 'general'
+                  let name = document.createElement('span')
+                  name.innerText = ath
+                  athlets.append(name)
+                  let arrow = document.createElement('img')
+                  arrow.src = 'img/green.png'
+                  arrow.onclick = this.changeGeneralList.bind(this, ath)
+                  athlets.append(arrow)
+                  namesList.append(athlets)
+               }
+               this.generalListContainer.append(namesList)
+               console.log(namesList);
+               return this.generalListContainer
+            }
+               
+            renderTeamList(){  
+            this.teamListContainer = document.createElement('div')
+            this.teamListContainer.className = 'team__list-container'
+            const sortTitle = document.createElement('h2')
+            sortTitle.innerHTML = this.sortTitle
+            this.teamListContainer.append(sortTitle)
+            const namesList2 = document.createElement('div')
+            namesList2.className = 'athletes__names'
+               for (let ath of this.athletesToCmp) {
+                  let athlets = document.createElement('div')
+                  athlets.className = 'team'
+                  let name = document.createElement('span')
+                  name.innerText = ath
+                  athlets.append(name)
+                  let arrow = document.createElement('img')
+                  arrow.src = 'img/red.png'
+                  athlets.append(arrow)
+                  namesList2.append(athlets)
+                  arrow.onclick = this.changeTeamList.bind(this, ath)
+               }
+               this.teamListContainer.append(namesList2)
+               return this.teamListContainer
+            }
+
+            render() {
+               let athletesLists = document.getElementById('container')
+               athletesLists.innerHTML = ' '
+               athletesLists.append(this.renderGeneralList())
+               athletesLists.append(this.renderTeamList())
+            }
+      }
+      
+      let athletsList = [ 
+         'John Depp',
+         'Sara Wik',
+         'Den Miro',
+         'Alan Woo',
+         'Olga Sich',
+         'Ivan Hal',
+      ]
+
+      window.onload = function() {
+         let athlet1 = new Athletes(athletsList, 'Загальний список', 'Для змагання')
+         athlet1.render()
+      }
+   </script>
+</head>
+<body>
+   <div id="container"></div>
+</body>
+</html>

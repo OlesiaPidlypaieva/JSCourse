@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>HT19</title>
+   <style>
+      #container{
+         display: grid;
+         grid-template-columns: 1fr 1fr 1fr 1fr;
+         border: 1px solid rgba(128, 128, 128, 0.332);
+      }
+      .card__container {
+         display: flex;
+         flex-direction: column;
+         border: 1px solid rgba(128, 128, 128, 0.332);
+         justify-content: space-between;
+         padding: 5px;
+      }
+      .card__img-container {
+         display: flex;
+         align-items: center;
+         justify-content: center;
+      }
+      img {
+         width: 100px;
+         height: auto;
+      }
+      .card__price{
+         color: red;
+      }
+      .active {
+         border: 2px solid rgb(63, 194, 63);
+      }
+
+   </style>
+   <script>
+      class Product{
+         constructor({img, title, price}) {
+            this.img = img
+            this.title = title
+            this.price = price
+         }
+         addGreenBorder(){
+            this.cardContainer.classList.add('active')
+         }
+         removeGreenBorder(){
+            this.cardContainer.classList.remove('active')
+         }
+         render(){
+            this.cardContainer = document.createElement('div')
+            this.cardContainer.className = 'card__container'
+            const imgContainer = document.createElement('div')
+            imgContainer.className = 'card__img-container'
+            const img = document.createElement('img')
+            img.src = this.img
+            imgContainer.append(img)
+            this.cardContainer.append(imgContainer)
+            const title = document.createElement('div')
+            title.className = 'card__title'
+            title.innerText = this.title
+            this.cardContainer.append(title)
+            const price = document.createElement('div')
+            price.className = 'card__price'
+            price.innerText = this.price
+            this.cardContainer.append(price)
+            document.getElementById('container').append(this.cardContainer)
+            this.cardContainer.onmouseover = this.addGreenBorder.bind(this)
+            this.cardContainer.onmouseleave = this.removeGreenBorder.bind(this)
+         }
+      }
+
+      let productList = [
+         {
+            img: 'img/259416480.webp',
+            title: 'Мобильный телефон Apple iPhone 13 128GB Green (MNGK3)',
+            price: 31499
+         },
+         {
+            img: 'img/284920909.webp',
+            title: 'Мобильный телефон Apple iPhone 14 Pro Max 256GB Gold (MQ9W3RX/A)',
+            price: 55999
+         },
+         {
+            img: 'img/284913534.webp',
+            title: 'Мобильный телефон Apple iPhone 14 128GB Purple (MPV03RX/A)',
+            price: 35999
+         },
+         {
+            img: 'img/37399329.webp',
+            title: 'Мобильный телефон Apple iPhone 11 128GB White (MHDJ3)',
+            price: 23499
+         }
+      ]      
+      window.onload = function(){
+         for(let card of productList) {
+            let card1 = new Product(card)
+            card1.render()
+         }
+      }
+   </script>
+</head>
+<body>
+   <div id="container"></div>
+</body>
+</html>
