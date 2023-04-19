@@ -3,16 +3,47 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="zero.css">
    <title>Document</title>
    <style>
+
+h2 {
+   font-size: 30px;
+   font-weight: bold;
+}
 img {
    width: 20px;
    height: auto;
 }
 #container {
    display: flex;
+   flex-direction: column;
+   align-items: center;
+   padding-top: 100px;
+   margin: 0 auto;
+   width: 100%;
+   height: 100%;
    gap: 20px;
 }
+
+.general__list-container, .team__list-container {
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+   width: 300px;
+}
+
+.athletes__names {
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+}
+
+.athletes__names div {
+   display: flex;
+   justify-content: space-between;
+}
+
    </style>
    <script>
       class Athletes {
@@ -43,6 +74,14 @@ img {
             this.render()
          }
 
+         athletName(athletName){
+            let athlets = document.createElement('div')
+            let name = document.createElement('span')
+            name.innerText = athletName
+            athlets.append(name)
+            return athlets
+         }
+
          renderGeneralList() {
             this.generalListContainer = document.createElement('div')
             this.generalListContainer.className = 'general__list-container'
@@ -52,11 +91,7 @@ img {
             const namesList = document.createElement('div')
             namesList.className = 'athletes__names'
                for (let ath of this.athletesList) {
-                  let athlets = document.createElement('div')
-                  athlets.className = 'general'
-                  let name = document.createElement('span')
-                  name.innerText = ath
-                  athlets.append(name)
+                  let athlets = this.athletName(ath)
                   let arrow = document.createElement('img')
                   arrow.src = 'img/green.png'
                   arrow.onclick = this.changeGeneralList.bind(this, ath)
@@ -77,11 +112,7 @@ img {
             const namesList2 = document.createElement('div')
             namesList2.className = 'athletes__names'
                for (let ath of this.athletesToCmp) {
-                  let athlets = document.createElement('div')
-                  athlets.className = 'team'
-                  let name = document.createElement('span')
-                  name.innerText = ath
-                  athlets.append(name)
+                  let athlets = this.athletName(ath)
                   let arrow = document.createElement('img')
                   arrow.src = 'img/red.png'
                   athlets.append(arrow)

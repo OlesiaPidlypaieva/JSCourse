@@ -27,7 +27,11 @@
       //Задача 3. Відобразити падаючий сніг. Сніжинка з’являється у верхній частині екрану і з випадковою швидкістю рухається вниз. 
       //Як тільки сніжинка досягає нижньої частини екрану вона знову повинна з’явитись у верхній частині екрану.
       class Snowflakes {
-            constructor(){
+            constructor(minNumber, maxNumber, minTime, maxTime){
+                  this.minNumber = minNumber
+                  this.maxNumber = maxNumber
+                  this.minTime = minTime
+                  this.maxTime = maxTime
                   this.top = 1
             }
 
@@ -38,14 +42,14 @@
             render(){
                   this.snowflake = document.createElement('div')
                   this.snowflake.className = 'snowflake'
-                  this.snowflake.style.left = this.randomNumber(0, 100)+'%'
+                  this.snowflake.style.left = this.randomNumber(this.minNumber, this.maxNumber)+'%'
                   this.snowflake.style.top = 0+'%'
                   setInterval(() => {
                               if (parseInt(this.snowflake.style.top)<= 98){
                               this.snowflake.style.top = (parseInt(this.snowflake.style.top)+this.top)+'%'
                               }
                               else {this.snowflake.style.top = 0+'%'}
-                  },this.randomNumber(0.05, 0.1)*1000);
+                  },this.randomNumber(this.minTime, this.maxTime)*1000);
                   document.getElementById('container').append(this.snowflake)
 
             }
@@ -53,7 +57,7 @@
 
       window.onload = function (){
             for (let i = 0; i<100; i++)
-{            let snowflakes = new Snowflakes()
+{            let snowflakes = new Snowflakes(0,100, 0.05, 0.1)
             snowflakes.render()}
       }
       </script>

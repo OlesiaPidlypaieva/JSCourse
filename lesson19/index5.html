@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="zero.css">
     <title>Document</title>
 </head>
 <style>
@@ -32,7 +33,12 @@
 //які їдуть вниз. При кліку на танк він вибухає і зникає з екрану. 
 
 class Tank {
-    constructor(){
+    constructor(minTime, maxTime, delay, minLeft, maxLeft){
+        this.minTime = minTime
+        this.maxTime = maxTime
+        this.delay = delay
+        this.minLeft = minLeft
+        this.maxLeft = maxLeft
         this.top = 1
     }
     randomNumber(min, max){
@@ -41,14 +47,14 @@ class Tank {
 
     removeTank() {
         this.tankImg.src = 'img/boom.png'
-        setTimeout(()=>{document.getElementById(this.tank.id).remove()},0.2*1000)
+        setTimeout(()=>{document.getElementById(this.tank.id).remove()},this.delay*1000)
     }
 
     render(){
         this.tank = document.createElement('div')
         this.tank.setAttribute('id', this.randomNumber(1,100))
         this.tank.className = 'tank'
-        this.tank.style.left = this.randomNumber(1,90)+'%'
+        this.tank.style.left = this.randomNumber(this.minLeft,this.maxLeft)+'%'
         this.tankImg = document.createElement('img')
         this.tankImg.src = 'img/tank.jpeg'
         this.tank.append(this.tankImg)
@@ -61,7 +67,7 @@ class Tank {
             else {
                 this.tank.style.top = 0+'%'
             }
-            },this.randomNumber(0.1, 0.5)*1000)
+            },this.randomNumber(this.minTime, this.maxTime)*1000)
         
         document.getElementById('container').append(this.tank)
     }
@@ -69,7 +75,7 @@ class Tank {
 
 window.onload = function () {
     for (let i = 0; i < 10; i++) {
-        let tank = new Tank()
+        let tank = new Tank(0.1, 0.5, 0.2, 1, 90)
         tank.render()
     }
 }
