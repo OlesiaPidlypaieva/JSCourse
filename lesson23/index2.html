@@ -108,8 +108,8 @@
    
    //Задача 6. Дано рядок тексту, вивести усі числа, які є у тексті.
    let p = document.createElement('p')
-   if (stringForTest.match(/[0-9]/g)) {
-   let numbersInString = stringForTest.match(/[0-9]/g)
+   if (stringForTest.match(/\d+/g)) {
+   let numbersInString = stringForTest.match(/\d+/g)
    p.innerText = `Numbers: ${numbersInString}`
    } else p.innerText = 'No string with condition'
 
