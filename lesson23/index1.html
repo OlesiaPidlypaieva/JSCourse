@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:ital@0;1&family=Source+Sans+Pro&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="zero.css">
+   <title>Lesson23</title>
+</head>
+<style>
+   .container {
+      width: 100%;
+      height: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      background-color:rgb( 240, 183, 179);
+   }
+   .task {
+      border: 2px solid rgb(106, 91, 110);
+      border-radius: 20px;
+      padding: 5px;
+      text-align: center;
+      background-color: rgb(204, 221, 183);
+      padding: 10px;
+   }
+</style>
+<body>
+   <div class="container">
+      <div class="task1 task"></div>
+      <div class="task2 task"></div>
+      <div class="task3 task"></div>
+      <div class="task4 task"></div>
+   </div>
+<script>
+   //Задача  1. Користувач іде у відпустку на 56 днів. Визначити дату на момент його повернення.
+
+   function getDayToWork(date, daysOfRest) {
+      date.setDate(date.getDate()+daysOfRest)
+      return `You have to start your job on ${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`
+   }
+
+   let currentDate = new Date()
+   let daysOfRest = 56
+   let dayToWork = getDayToWork(currentDate, daysOfRest)
+   document.querySelector('.task1').innerText = dayToWork
+   
+   // Задача 2 . Дано дата виробництва йогурта (вводимо рік, місяць, день) та кількість днів придатності. 
+   //Визначити чи є він придатним на даний момент.
+
+   function isYogurtFresh(year, month, day, presentDate, daysOfStorage) {
+      let dateOfProd = new Date (year, month-1, day)
+      dateOfProd.setDate(dateOfProd.getDate()+daysOfStorage)
+      if ((presentDate-dateOfProd)>=0)  return `You can eat this yogurt`
+      else return `You\'d better not eat this yogurt`
+   }
+   let userYear = parseInt(prompt('Please, enter the year of production'))
+   let userMonth = parseInt(prompt('Please, enter the month of production'))
+   let userDay = parseInt(prompt('Please, enter the day of production'))
+   let daysOfStorage = parseInt(prompt('Please, enter the number of storage days'))
+   let presentDate = new Date()
+
+   let yogurtValidity = isYogurtFresh(userYear,userMonth,userDay,presentDate,daysOfStorage)
+   document.querySelector('.task2').innerText = yogurtValidity
+
+   //Задача 3. Сформувати масив з 1000 елементів від 1 до 800. Порівняти час сортування бульбашкою і  вставкою.
+
+   function getRandomNumber(minValue,maxValue) {
+         return minValue+Math.floor(Math.random()*(maxValue-minValue+1))
+      }
+      function generateRandomArray(arrayLength, minValue, maxValue) {
+         const arr = []
+         for (let i=0; i<arrayLength; i++) {
+            const randomValue = getRandomNumber(minValue,maxValue)
+            arr.push(randomValue)
+         }
+         return arr
+      }
+      const randomArray = generateRandomArray(1000, 1, 800)
+      const randomArray2 = JSON.parse(JSON.stringify(randomArray))
+
+      // Сортування бульбашкою
+      let changed
+      function getSortedArrayBubble(arr) {
+      do {
+         changed = false
+         for (let i=1; i<arr.length; i++) {
+            if (arr[i-1]>arr[i]) {
+               let tmp = arr[i-1]
+               arr[i-1] = arr[i]
+               arr[i] = tmp
+               changed = true
+            }
+         }
+      } while (changed);
+   }
+   let startBubble = new Date()
+   getSortedArrayBubble(randomArray);
+   let endBubble = new Date()
+   let diffBubble = (endBubble-startBubble)
+   
+   //сортування включенням
+
+   function getSortedArrayIncl(arr) {
+                  for (let k = 1; k<arr.length;k++) {
+                  let currentElement = arr[k]
+                  let i = k-1
+                  while (i>=0 && arr[i]>currentElement) {
+                        arr[i+1] = arr[i]
+                        i=i-1
+                  }
+                  arr[i+1] = currentElement
+                  }
+            }
+      
+      let startIncl = new Date()
+      getSortedArrayIncl(randomArray2);
+      let endIncl = new Date()
+      let diffIncl = endIncl - startIncl
+
+      function diff (bubble,incl) {
+         if (bubble<incl) return `Bubble sorting is shorter on ${incl-bubble} ms`
+         else if (incl<bubble) return `Insertion sorting is shorter on ${bubble-incl} ms` 
+         else return 'Time on sorting is the same'
+      }
+      let difference = diff(diffBubble,diffIncl)
+      document.querySelector('.task3').innerText = difference
+
+
+   
+   //4. Задаємо користувачу задачу з додавання двох чисел. 
+   //Визначити скільки секунд було використано для розв’язання задачі.
+
+   function getTimeToTaskCount (number1, number2) {
+      let start = new Date()
+      let sum = parseFloat(prompt(`Please, enter the sum of ${number1} and ${number2}`))
+      let end = new Date()
+      let result
+      if (sum === (number1+number2)) result = 'Your sum is correct'
+      else result = 'Your sum is incorrect'
+      let diff = Math.floor((end-start)/1000)
+      return `To count the sum of numbers took ${diff}s. ${result}.`
+   }
+   let number1= parseFloat(prompt('Please, enter the number 1'))
+   let number2 = parseFloat(prompt('Please, enter the number 2'))
+   document.querySelector('.task4').innerText = getTimeToTaskCount(number1,number2)
+
+
+
+
+   </script>
+</body>
+</html>

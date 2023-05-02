@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:ital@0;1&family=Source+Sans+Pro&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="zero.css">
+   <title>Lesson23</title>
+</head>
+<style>
+   .container {
+      width: 100%;
+      height: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background-color:rgb( 240, 183, 179);
+   }
+   .task {
+      border: 2px solid rgb(106, 91, 110);
+      border-radius: 20px;
+      padding: 5px;
+      text-align: center;
+      background-color: rgb(204, 221, 183);
+      padding: 10px;
+   }
+</style>
+<body>
+   <div class="container">
+      <div class="task1 task"></div>
+      <div class="task2 task"></div>
+      <div class="task3 task"></div>
+      <div class="task4 task"></div>
+      <div class="task5 task"></div>
+      <div class="task6 task"></div>
+      <div class="task7 task"></div>
+      <div class="task8 task"></div>
+      <div class="task9 task"></div>
+      <div class="task10 task"></div>
+      <div class="task11 task"></div>
+      <div class="task12 task"></div>
+      <div class="task13 task"></div>
+      <div class="task14 task"></div>
+      <div class="task15 task"></div>
+      <div class="task16 task"></div>
+      <div class="task17 task"></div>
+   </div>
+<script>
+   let text = [
+   "Де-де-де би не був, не забуду дім",
+   "Хочеш, закрути мене як бігуді",
+   "0800-00-12",
+   "0800-00-13",
+   "0800-00-22",
+   "bcdf",
+   ]
+   //Задача 1. Дано масив рядків. Вивести ті, у яких є цифри (використати метод test та регулярні вирази).
+   for (let string of text) {
+      let par = document.createElement('p')
+      if (/[0-9]/.test(string)) {
+         par.innerText = string
+      document.querySelector('.task1').append(par)
+      }
+   }
+
+   //Задача 2. Дано масив рядків. Вивести ті, у яких немає цифр.
+
+   for (let string of text) {
+      if (/[0-9]/.test(string) === false) {
+         let par = document.createElement('p')
+         par.innerText = string
+         document.querySelector('.task2').append(par);
+      }
+   }
+
+   //Задача 3. Дано масив рядків. Вивести ті, у яких є голосні літери.
+   for (let string of text) {
+      if (/(а|е|є|и|і|ї|о|у|ю|я|a|e|i|o|u|y)/.test(string.toLowerCase())) {
+         let par = document.createElement('p')
+         par.innerText = string
+         document.querySelector('.task3').append(par);
+      }
+   }
+   //Задача 4. Дано масив рядків. Вивести ті, у яких немає голосних літер.
+   for (let string of text) {
+      if (/(а|е|є|и|і|ї|о|у|ю|я|a|e|i|o|u|y)/.test(string.toLowerCase())===false && /[0-9]/.test(string) === false) {
+         let par = document.createElement('p')
+         par.innerText = string
+         document.querySelector('.task4').append(par);
+      }
+   }
+
+   //Задача 5. Дано масив рядків. Вивести ті, у яких є або цифра 1 або цифра 3.
+   for (let string of text) {
+      if (/(1|3)/.test(string)) {
+         let par = document.createElement('p')
+         par.innerText = string
+         document.querySelector('.task5').append(par)
+      }
+   }
+
+   let stringForTest = 'Leonardo da Vinci "1.12.1452 – 1519" is one of the world’s greatest thinkers, artists and philosophers. Seeking after perfection, he created rare masterpieces of art such as ‘The Mona Lisa’ and The Last Supper.’'
+   
+   //Задача 6. Дано рядок тексту, вивести усі числа, які є у тексті.
+   let p = document.createElement('p')
+   if (stringForTest.match(/[0-9]/g)) {
+   let numbersInString = stringForTest.match(/[0-9]/g)
+   p.innerText = `Numbers: ${numbersInString}`
+   } else p.innerText = 'No string with condition'
+
+   document.querySelector('.task6').append(p)
+
+   //Задача 7. Дано рядок тексту. Знайти усі знаки пунктуації, які були використано.
+   let p1 = document.createElement('p')
+   if (stringForTest.match(/\W\s/g)) {
+      let punctuationMarks = stringForTest.match(/\W\s/g)
+      p1.innerText = `Punctuation marks: ${punctuationMarks.join(' ')}`
+   } else p1.innerText = 'No string with condition'
+
+   document.querySelector('.task7').append(p1)
+
+   //Задача 8. Дано рядок тексту. Вивести усі складові, які розділені розділовими знаками.
+   let p2 = document.createElement('p')
+   if (stringForTest.match(/\w+/g)) {
+      let noPunctuationMarks = stringForTest.match(/\w+/g)
+         p2.innerText = `${noPunctuationMarks}`
+   } else p2.innerText = 'No string with condition'
+
+   document.querySelector('.task8').append(p2)
+
+   //Задача 9. Дано рядок тексту. Перевірити, чи містить він дату у форматі dd.mm.yyyy (dd- день, mm- місяць, yyyy- рік).
+   let p3 = document.createElement('p')
+   if (stringForTest.match(/\d{1,2}\.\d{1,2}\.\d{4}/g)){
+      let dateCheck = stringForTest.match(/\d{1,2}\.\d{1,2}\.\d{4}/g)
+      p3.innerText = `${dateCheck}`
+   }else p3.innerText = 'No string with condition'
+
+   document.querySelector('.task9').append(p3)
+
+   //Задача 10. Дано рядок тексту. Підрахувати кількість двоцифрових чисел у рядку.
+   let p4 = document.createElement('p')
+   if (stringForTest.match(/\D\d{2}\D/g)) {
+      let twoNumbersQuant = stringForTest.match(/\D\d{2}\D/g).length
+      p4.innerText = `${twoNumbersQuant}`
+   } else p4.innerText = 'No string with condition'
+   document.querySelector('.task10').append(p4)
+
+   //Задача 11. Визначити чи може бути рядок тексту номером банківської картки (приклад: «4142-3433-2323-3434»). Знайти усі такі номери.
+   let cardInf = 'Your credit card number is 4142-3433-2323-3435. Please, don\'t forget it. This number 4142-3433-2323-3435 is not correct any more'
+   let p5 = document.createElement('p')
+   if (cardInf.match(/\b\d{4}\-\d{4}\-\d{4}\-\d{4}\b/g)) {
+      let cardNumberCheck = cardInf.match(/\b\d{4}\-\d{4}\-\d{4}\-\d{4}\b/g)
+      p5.innerText = `${cardNumberCheck.join(' ; ')}`
+   } else p5.innerText = 'There is no card numbers'
+   document.querySelector('.task11').append(p5)
+
+   //Задача 12. Дано адресу сайту. Визначити, чи є він урядовим (містить домен “gov”)
+   let domainName = 'https://www.kmu.gov.ua/'
+   let p6 = document.createElement('p')
+   if ((/\.gov\./).test(domainName)) 
+   p6.innerText = 'This domain includes "gov"'
+   else p6.innerText = 'This domain doesn\'t include "gov"'
+   document.querySelector('.task12').append(p6)
+
+   //Задача 13. Вибрати усі роки після 2021 року з отриманого повідомлення
+   let yearsString = 'Після 2020 року слідує 2021, після 2021 року - 2022, після 2022 - 2023 і т.д.'
+   let p7 = document.createElement('p')
+   if (yearsString.match(/\D202\d{1}\D/g)) {
+      let yearsArr = (yearsString.match(/\D202\d{1}\b/g)).filter((year=>year>2021))
+      p7.innerText = yearsArr.join('; ')
+   }
+   else p7.innerText = 'There is no such years'
+   document.querySelector('.task13').append(p7)
+   
+   //Задача 14. Дано номер телефону. Перевірити, чи є цей телефон телефоном з України (починаєтсья на «+38»)
+   let phoneNumber = '+380502655599'
+   let p8 = document.createElement('p')
+   if ((/(\W\+38\d{10}\b)|(^\+38\d{10}\b)/).test(phoneNumber)) {
+      p8.innerText = 'This is Ukrainian phone number'
+   } else  p8.innerText = 'This is not Ukrainian phone number'
+   document.querySelector('.task14').append(p8)
+
+   //Задача 15. Користувач вводить прізвище та ім’я в одному рядку через пробіл.  Замінити пробіл на дефіс.
+   let userName = prompt('Please, enter your name')
+   let p9 = document.createElement('p') 
+   function displayName (name) {
+      let nameInf = name.match(/\w+/g)
+      return `${nameInf[0]} - ${nameInf[1]}`
+   }
+   p9.innerText = displayName(userName)
+   document.querySelector('.task15').append(p9)
+
+   //Задача 16. Користувач вводить дату у форматі «день.місяць.рік». Отримати рядкове представлення дати у форматі «день/місяць/рік»
+   let userDate = prompt('Please, enter date in format: **.**.****')
+   let p10 = document.createElement('p') 
+   function displayDate (date) {
+      let dateInf = date.match(/\d{2}\.\d{2}\.\d{4}/g)
+      return `${dateInf[0]}`
+   }
+   let date = displayDate(userDate).replaceAll(".","/")
+   p10.innerText = date
+   document.querySelector('.task16').append(p10)
+
+   //Задача 17. Користувач вводить день (номер дня (0-6) або «sun,mon,tue,wed,thu,fri,sat»). Визначити, чи  є це день вихідним
+   function checkDay(day) {
+      if (/(0|6|sun|sat)/.test(day)) return 'Weekend'
+      else if (/(1|2|3|4|5|mon|tue|wed|thu|fri)/.test(day.toLowerCase())) return 'Working day'
+      else throw new Error('Incorrect day') 
+   }
+   let userDay = prompt('Please, enter the day')
+   let dayOfWeek = document.createElement('p')
+   dayOfWeek.innerText = checkDay(userDay) 
+   document.querySelector('.task17').append(dayOfWeek)
+   </script>
+</body>
+</html>
