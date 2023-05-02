@@ -62,7 +62,7 @@
    //Задача 1. Дано масив рядків. Вивести ті, у яких є цифри (використати метод test та регулярні вирази).
    for (let string of text) {
       let par = document.createElement('p')
-      if (/[0-9]/.test(string)) {
+      if (/\d+/.test(string)) {
          par.innerText = string
       document.querySelector('.task1').append(par)
       }
@@ -71,7 +71,7 @@
    //Задача 2. Дано масив рядків. Вивести ті, у яких немає цифр.
 
    for (let string of text) {
-      if (/[0-9]/.test(string) === false) {
+      if (/\d+/.test(string) === false) {
          let par = document.createElement('p')
          par.innerText = string
          document.querySelector('.task2').append(par);
@@ -80,7 +80,7 @@
 
    //Задача 3. Дано масив рядків. Вивести ті, у яких є голосні літери.
    for (let string of text) {
-      if (/(а|е|є|и|і|ї|о|у|ю|я|a|e|i|o|u|y)/.test(string.toLowerCase())) {
+      if (/([аеєиіїоуюя]|[aeiouy])/.test(string.toLowerCase())) {
          let par = document.createElement('p')
          par.innerText = string
          document.querySelector('.task3').append(par);
@@ -88,7 +88,7 @@
    }
    //Задача 4. Дано масив рядків. Вивести ті, у яких немає голосних літер.
    for (let string of text) {
-      if (/(а|е|є|и|і|ї|о|у|ю|я|a|e|i|o|u|y)/.test(string.toLowerCase())===false && /[0-9]/.test(string) === false) {
+      if (/[аеєиіїоуюя]|[aeiouy]/.test(string.toLowerCase())===false && /\d+/.test(string) === false) {
          let par = document.createElement('p')
          par.innerText = string
          document.querySelector('.task4').append(par);
